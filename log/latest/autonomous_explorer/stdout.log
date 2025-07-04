@@ -1,0 +1,27 @@
+running develop
+running egg_info
+creating autonomous_explorer.egg-info
+writing autonomous_explorer.egg-info/PKG-INFO
+writing dependency_links to autonomous_explorer.egg-info/dependency_links.txt
+writing entry points to autonomous_explorer.egg-info/entry_points.txt
+writing requirements to autonomous_explorer.egg-info/requires.txt
+writing top-level names to autonomous_explorer.egg-info/top_level.txt
+writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+reading manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+running build_ext
+Creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages/site.py
+Creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages/autonomous-explorer.egg-link (link to .)
+Installing explorer_node script to /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/autonomous_explorer
+
+Installed /root/autonomous_explorer_ws_new/build/autonomous_explorer
+running symlink_data
+creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index
+creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index
+creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index/packages
+symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/resource/autonomous_explorer -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index/packages
+symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/package.xml -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer
+creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/launch
+symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/launch/explorer.launch.py -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/launch
+creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/config
+symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/config/robot_params.yaml -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/config

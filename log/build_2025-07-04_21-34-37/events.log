@@ -1,0 +1,508 @@
+[0.000000] (-) TimerEvent: {}
+[0.002251] (autonomous_explorer) JobQueued: {'identifier': 'autonomous_explorer', 'dependencies': OrderedDict()}
+[0.002984] (servo_response) JobQueued: {'identifier': 'servo_response', 'dependencies': OrderedDict()}
+[0.004858] (autonomous_explorer) JobStarted: {'identifier': 'autonomous_explorer'}
+[0.096419] (-) TimerEvent: {}
+[0.114296] (servo_response) JobStarted: {'identifier': 'servo_response'}
+[0.196882] (-) TimerEvent: {}
+[0.298586] (-) TimerEvent: {}
+[0.400173] (-) TimerEvent: {}
+[0.501636] (-) TimerEvent: {}
+[0.603123] (-) TimerEvent: {}
+[0.704589] (-) TimerEvent: {}
+[0.806200] (-) TimerEvent: {}
+[0.907869] (-) TimerEvent: {}
+[1.009394] (-) TimerEvent: {}
+[1.110744] (-) TimerEvent: {}
+[1.212161] (-) TimerEvent: {}
+[1.314188] (-) TimerEvent: {}
+[1.415629] (-) TimerEvent: {}
+[1.517000] (-) TimerEvent: {}
+[1.618417] (-) TimerEvent: {}
+[1.719773] (-) TimerEvent: {}
+[1.821131] (-) TimerEvent: {}
+[1.922523] (-) TimerEvent: {}
+[2.023999] (-) TimerEvent: {}
+[2.125492] (-) TimerEvent: {}
+[2.207852] (servo_response) JobProgress: {'identifier': 'servo_response', 'progress': 'cmake'}
+[2.212611] (servo_response) Command: {'cmd': ['/usr/bin/cmake', '/root/autonomous_explorer_ws_new/src/servo_response', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/root/autonomous_explorer_ws_new/install/servo_response'], 'cwd': '/root/autonomous_explorer_ws_new/build/servo_response', 'env': OrderedDict([('SHELL', '/bin/bash'), ('ROS_VERSION', '2'), ('ROS_PYTHON_VERSION', '3'), ('PWD', '/root/autonomous_explorer_ws_new/build/servo_response'), ('LOGNAME', 'root'), ('XDG_SESSION_TYPE', 'tty'), ('MOTD_SHOWN', 'pam'), ('HOME', '/root'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install/servo_response:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('CMAKE_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('COLCON_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install:/root/wheeltec_joy/install:/root/eulercar/install'), ('SSH_CONNECTION', '192.168.3.35 64895 192.168.3.30 22'), ('XDG_SESSION_CLASS', 'user'), ('PYTHONPATH', '/root/autonomous_explorer_ws_new/build/autonomous_explorer:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('TERM', 'xterm-256color'), ('USER', 'root'), ('SHLVL', '1'), ('XDG_SESSION_ID', 'c3'), ('LD_LIBRARY_PATH', '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('XDG_RUNTIME_DIR', '/run/user/0'), ('ROS_LOCALHOST_ONLY', '0'), ('SSH_CLIENT', '192.168.3.35 64895 22'), ('LC_ALL', 'en_US.UTF-8'), ('PATH', '/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('SSH_TTY', '/dev/pts/1'), ('ROS_DISTRO', 'foxy'), ('OLDPWD', '/root'), ('_', '/usr/bin/env')]), 'shell': False}
+[2.227527] (-) TimerEvent: {}
+[2.334276] (-) TimerEvent: {}
+[2.436017] (-) TimerEvent: {}
+[2.537470] (-) TimerEvent: {}
+[2.639062] (-) TimerEvent: {}
+[2.740659] (-) TimerEvent: {}
+[2.842185] (-) TimerEvent: {}
+[2.849614] (servo_response) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[2.942489] (-) TimerEvent: {}
+[3.043923] (-) TimerEvent: {}
+[3.145428] (-) TimerEvent: {}
+[3.246955] (-) TimerEvent: {}
+[3.270507] (servo_response) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[3.316891] (servo_response) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[3.347362] (-) TimerEvent: {}
+[3.449057] (-) TimerEvent: {}
+[3.550545] (-) TimerEvent: {}
+[3.652121] (-) TimerEvent: {}
+[3.753542] (-) TimerEvent: {}
+[3.838906] (servo_response) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[3.846968] (servo_response) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[3.853835] (-) TimerEvent: {}
+[3.955259] (-) TimerEvent: {}
+[4.056810] (-) TimerEvent: {}
+[4.158461] (-) TimerEvent: {}
+[4.259905] (-) TimerEvent: {}
+[4.361404] (-) TimerEvent: {}
+[4.375573] (servo_response) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[4.461713] (-) TimerEvent: {}
+[4.491607] (servo_response) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[4.494948] (servo_response) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[4.518480] (servo_response) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[4.562006] (-) TimerEvent: {}
+[4.663926] (-) TimerEvent: {}
+[4.765747] (-) TimerEvent: {}
+[4.867292] (-) TimerEvent: {}
+[4.969039] (-) TimerEvent: {}
+[5.070554] (-) TimerEvent: {}
+[5.095958] (servo_response) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[5.104023] (servo_response) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[5.170934] (-) TimerEvent: {}
+[5.272525] (-) TimerEvent: {}
+[5.374033] (-) TimerEvent: {}
+[5.475689] (-) TimerEvent: {}
+[5.577281] (-) TimerEvent: {}
+[5.679147] (-) TimerEvent: {}
+[5.683709] (servo_response) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[5.779435] (-) TimerEvent: {}
+[5.785979] (servo_response) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[5.790590] (servo_response) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[5.816906] (servo_response) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[5.879764] (-) TimerEvent: {}
+[5.981348] (-) TimerEvent: {}
+[6.082817] (-) TimerEvent: {}
+[6.084532] (servo_response) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[6.086605] (servo_response) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[6.183127] (-) TimerEvent: {}
+[6.284517] (-) TimerEvent: {}
+[6.385952] (-) TimerEvent: {}
+[6.487427] (-) TimerEvent: {}
+[6.589135] (-) TimerEvent: {}
+[6.690660] (-) TimerEvent: {}
+[6.792864] (-) TimerEvent: {}
+[6.895006] (-) TimerEvent: {}
+[6.996612] (-) TimerEvent: {}
+[7.098187] (-) TimerEvent: {}
+[7.142692] (autonomous_explorer) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/root/autonomous_explorer_ws_new/build/autonomous_explorer/build', '--no-deps', 'symlink_data'], 'cwd': '/root/autonomous_explorer_ws_new/build/autonomous_explorer', 'env': {'SHELL': '/bin/bash', 'ROS_VERSION': '2', 'ROS_PYTHON_VERSION': '3', 'PWD': '/root/autonomous_explorer_ws_new/build/autonomous_explorer', 'LOGNAME': 'root', 'XDG_SESSION_TYPE': 'tty', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/root/autonomous_explorer_ws_new/install/servo_response:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy', 'CMAKE_PREFIX_PATH': '/root/autonomous_explorer_ws_new/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial', 'COLCON_PREFIX_PATH': '/root/autonomous_explorer_ws_new/install:/root/wheeltec_joy/install:/root/eulercar/install', 'SSH_CONNECTION': '192.168.3.35 64895 192.168.3.30 22', 'XDG_SESSION_CLASS': 'user', 'PYTHONPATH': '/root/autonomous_explorer_ws_new/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:/root/autonomous_explorer_ws_new/build/autonomous_explorer:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'TERM': 'xterm-256color', 'USER': 'root', 'SHLVL': '1', 'XDG_SESSION_ID': 'c3', 'LD_LIBRARY_PATH': '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib', 'XDG_RUNTIME_DIR': '/run/user/0', 'ROS_LOCALHOST_ONLY': '0', 'SSH_CLIENT': '192.168.3.35 64895 22', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'SSH_TTY': '/dev/pts/1', 'ROS_DISTRO': 'foxy', 'OLDPWD': '/root', '_': '/usr/bin/env'}, 'shell': False}
+[7.198611] (-) TimerEvent: {}
+[7.300138] (-) TimerEvent: {}
+[7.401540] (-) TimerEvent: {}
+[7.502985] (-) TimerEvent: {}
+[7.604325] (-) TimerEvent: {}
+[7.706139] (-) TimerEvent: {}
+[7.807507] (-) TimerEvent: {}
+[7.908937] (-) TimerEvent: {}
+[7.993035] (servo_response) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[8.009194] (-) TimerEvent: {}
+[8.110592] (-) TimerEvent: {}
+[8.169335] (servo_response) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[8.210896] (-) TimerEvent: {}
+[8.312361] (-) TimerEvent: {}
+[8.413868] (-) TimerEvent: {}
+[8.515365] (-) TimerEvent: {}
+[8.534109] (servo_response) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[8.592971] (servo_response) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[8.615593] (-) TimerEvent: {}
+[8.716998] (-) TimerEvent: {}
+[8.818606] (-) TimerEvent: {}
+[8.920389] (-) TimerEvent: {}
+[9.021912] (-) TimerEvent: {}
+[9.123385] (-) TimerEvent: {}
+[9.142458] (servo_response) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[9.223695] (-) TimerEvent: {}
+[9.305966] (servo_response) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[9.323995] (-) TimerEvent: {}
+[9.426293] (-) TimerEvent: {}
+[9.498153] (autonomous_explorer) StdoutLine: {'line': b'running develop\n'}
+[9.526626] (-) TimerEvent: {}
+[9.628773] (-) TimerEvent: {}
+[9.730227] (-) TimerEvent: {}
+[9.831834] (-) TimerEvent: {}
+[9.905845] (servo_response) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[9.932100] (-) TimerEvent: {}
+[10.034081] (-) TimerEvent: {}
+[10.141052] (-) TimerEvent: {}
+[10.242838] (-) TimerEvent: {}
+[10.344320] (-) TimerEvent: {}
+[10.445799] (-) TimerEvent: {}
+[10.469943] (servo_response) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[10.488409] (servo_response) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[10.499396] (servo_response) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[10.546087] (-) TimerEvent: {}
+[10.647535] (-) TimerEvent: {}
+[10.749373] (-) TimerEvent: {}
+[10.851013] (-) TimerEvent: {}
+[10.922963] (autonomous_explorer) StdoutLine: {'line': b'running egg_info\n'}
+[10.924608] (autonomous_explorer) StdoutLine: {'line': b'creating autonomous_explorer.egg-info\n'}
+[10.926238] (autonomous_explorer) StdoutLine: {'line': b'writing autonomous_explorer.egg-info/PKG-INFO\n'}
+[10.927848] (autonomous_explorer) StdoutLine: {'line': b'writing dependency_links to autonomous_explorer.egg-info/dependency_links.txt\n'}
+[10.929810] (autonomous_explorer) StdoutLine: {'line': b'writing entry points to autonomous_explorer.egg-info/entry_points.txt\n'}
+[10.931720] (autonomous_explorer) StdoutLine: {'line': b'writing requirements to autonomous_explorer.egg-info/requires.txt\n'}
+[10.932988] (autonomous_explorer) StdoutLine: {'line': b'writing top-level names to autonomous_explorer.egg-info/top_level.txt\n'}
+[10.950960] (autonomous_explorer) StdoutLine: {'line': b"writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'\n"}
+[10.952592] (-) TimerEvent: {}
+[11.054139] (-) TimerEvent: {}
+[11.056713] (servo_response) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[11.058868] (servo_response) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[11.154510] (-) TimerEvent: {}
+[11.256128] (-) TimerEvent: {}
+[11.285080] (autonomous_explorer) StdoutLine: {'line': b"reading manifest file 'autonomous_explorer.egg-info/SOURCES.txt'\n"}
+[11.293654] (autonomous_explorer) StdoutLine: {'line': b"writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'\n"}
+[11.356454] (-) TimerEvent: {}
+[11.457918] (-) TimerEvent: {}
+[11.559512] (-) TimerEvent: {}
+[11.606339] (servo_response) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[11.610108] (servo_response) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[11.659810] (-) TimerEvent: {}
+[11.710505] (autonomous_explorer) StdoutLine: {'line': b'running build_ext\n'}
+[11.713759] (autonomous_explorer) StdoutLine: {'line': b'Creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages/site.py\n'}
+[11.730435] (autonomous_explorer) StdoutLine: {'line': b'Creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages/autonomous-explorer.egg-link (link to .)\n'}
+[11.738481] (autonomous_explorer) StdoutLine: {'line': b'Installing explorer_node script to /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/autonomous_explorer\n'}
+[11.741043] (autonomous_explorer) StdoutLine: {'line': b'\n'}
+[11.742619] (autonomous_explorer) StdoutLine: {'line': b'Installed /root/autonomous_explorer_ws_new/build/autonomous_explorer\n'}
+[11.744752] (autonomous_explorer) StdoutLine: {'line': b'running symlink_data\n'}
+[11.746228] (autonomous_explorer) StdoutLine: {'line': b'creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index\n'}
+[11.747889] (autonomous_explorer) StdoutLine: {'line': b'creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index\n'}
+[11.749448] (autonomous_explorer) StdoutLine: {'line': b'creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index/packages\n'}
+[11.751065] (autonomous_explorer) StdoutLine: {'line': b'symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/resource/autonomous_explorer -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index/packages\n'}
+[11.752429] (autonomous_explorer) StdoutLine: {'line': b'symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/package.xml -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer\n'}
+[11.753671] (autonomous_explorer) StdoutLine: {'line': b'creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/launch\n'}
+[11.754883] (autonomous_explorer) StdoutLine: {'line': b'symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/launch/explorer.launch.py -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/launch\n'}
+[11.756089] (autonomous_explorer) StdoutLine: {'line': b'creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/config\n'}
+[11.757267] (autonomous_explorer) StdoutLine: {'line': b'symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/config/robot_params.yaml -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/config\n'}
+[11.760062] (-) TimerEvent: {}
+[11.861544] (-) TimerEvent: {}
+[11.963357] (-) TimerEvent: {}
+[12.003678] (servo_response) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[12.005553] (servo_response) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[12.063691] (-) TimerEvent: {}
+[12.098161] (autonomous_explorer) CommandEnded: {'returncode': 0}
+[12.165357] (-) TimerEvent: {}
+[12.242563] (autonomous_explorer) JobEnded: {'identifier': 'autonomous_explorer', 'rc': 0}
+[12.265700] (-) TimerEvent: {}
+[12.367237] (-) TimerEvent: {}
+[12.468835] (-) TimerEvent: {}
+[12.514623] (servo_response) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[12.522389] (servo_response) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[12.569118] (-) TimerEvent: {}
+[12.670535] (-) TimerEvent: {}
+[12.772063] (-) TimerEvent: {}
+[12.873434] (-) TimerEvent: {}
+[12.974795] (-) TimerEvent: {}
+[13.076208] (-) TimerEvent: {}
+[13.177652] (-) TimerEvent: {}
+[13.279185] (-) TimerEvent: {}
+[13.380576] (-) TimerEvent: {}
+[13.481965] (-) TimerEvent: {}
+[13.583362] (-) TimerEvent: {}
+[13.684819] (-) TimerEvent: {}
+[13.786215] (-) TimerEvent: {}
+[13.865804] (servo_response) StdoutLine: {'line': b'-- Found std_srvs: 2.0.5 (/opt/ros/foxy/share/std_srvs/cmake)\n'}
+[13.886462] (-) TimerEvent: {}
+[13.951691] (servo_response) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[13.986755] (-) TimerEvent: {}
+[14.088231] (-) TimerEvent: {}
+[14.189828] (-) TimerEvent: {}
+[14.291262] (-) TimerEvent: {}
+[14.392698] (-) TimerEvent: {}
+[14.494162] (-) TimerEvent: {}
+[14.595832] (-) TimerEvent: {}
+[14.649297] (servo_response) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[14.657192] (servo_response) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[14.659367] (servo_response) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /root/autonomous_explorer_ws_new/src/servo_response/include\n'}
+[14.660732] (servo_response) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[14.666293] (servo_response) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[14.667696] (servo_response) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[14.673345] (servo_response) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[14.681409] (servo_response) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[14.682842] (servo_response) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[14.686552] (servo_response) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[14.696113] (-) TimerEvent: {}
+[14.708105] (servo_response) StdoutLine: {'line': b'-- Configuring done\n'}
+[14.764583] (servo_response) StdoutLine: {'line': b'-- Generating done\n'}
+[14.792210] (servo_response) StdoutLine: {'line': b'-- Build files have been written to: /root/autonomous_explorer_ws_new/build/servo_response\n'}
+[14.796304] (-) TimerEvent: {}
+[14.871762] (servo_response) CommandEnded: {'returncode': 0}
+[14.875815] (servo_response) JobProgress: {'identifier': 'servo_response', 'progress': 'build'}
+[14.881459] (servo_response) Command: {'cmd': ['/usr/bin/cmake', '--build', '/root/autonomous_explorer_ws_new/build/servo_response', '--', '-j4', '-l4'], 'cwd': '/root/autonomous_explorer_ws_new/build/servo_response', 'env': OrderedDict([('SHELL', '/bin/bash'), ('ROS_VERSION', '2'), ('ROS_PYTHON_VERSION', '3'), ('PWD', '/root/autonomous_explorer_ws_new/build/servo_response'), ('LOGNAME', 'root'), ('XDG_SESSION_TYPE', 'tty'), ('MOTD_SHOWN', 'pam'), ('HOME', '/root'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install/servo_response:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('CMAKE_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('COLCON_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install:/root/wheeltec_joy/install:/root/eulercar/install'), ('SSH_CONNECTION', '192.168.3.35 64895 192.168.3.30 22'), ('XDG_SESSION_CLASS', 'user'), ('PYTHONPATH', '/root/autonomous_explorer_ws_new/build/autonomous_explorer:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('TERM', 'xterm-256color'), ('USER', 'root'), ('SHLVL', '1'), ('XDG_SESSION_ID', 'c3'), ('LD_LIBRARY_PATH', '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('XDG_RUNTIME_DIR', '/run/user/0'), ('ROS_LOCALHOST_ONLY', '0'), ('SSH_CLIENT', '192.168.3.35 64895 22'), ('LC_ALL', 'en_US.UTF-8'), ('PATH', '/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('SSH_TTY', '/dev/pts/1'), ('ROS_DISTRO', 'foxy'), ('OLDPWD', '/root'), ('_', '/usr/bin/env')]), 'shell': False}
+[14.897344] (-) TimerEvent: {}
+[14.999745] (-) TimerEvent: {}
+[15.101347] (-) TimerEvent: {}
+[15.164696] (servo_response) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target servo_node\x1b[0m\n'}
+[15.201617] (-) TimerEvent: {}
+[15.303157] (-) TimerEvent: {}
+[15.404573] (-) TimerEvent: {}
+[15.505927] (-) TimerEvent: {}
+[15.554683] (servo_response) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/servo_node.dir/src/servo_util.cpp.o\x1b[0m\n'}
+[15.562784] (servo_response) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/servo_node.dir/src/servo_node.cpp.o\x1b[0m\n'}
+[15.606324] (-) TimerEvent: {}
+[15.707918] (-) TimerEvent: {}
+[15.809511] (-) TimerEvent: {}
+[15.911076] (-) TimerEvent: {}
+[16.012605] (-) TimerEvent: {}
+[16.114119] (-) TimerEvent: {}
+[16.215607] (-) TimerEvent: {}
+[16.317091] (-) TimerEvent: {}
+[16.418621] (-) TimerEvent: {}
+[16.520115] (-) TimerEvent: {}
+[16.621624] (-) TimerEvent: {}
+[16.723117] (-) TimerEvent: {}
+[16.824620] (-) TimerEvent: {}
+[16.926177] (-) TimerEvent: {}
+[17.027777] (-) TimerEvent: {}
+[17.129328] (-) TimerEvent: {}
+[17.230829] (-) TimerEvent: {}
+[17.332983] (-) TimerEvent: {}
+[17.435162] (-) TimerEvent: {}
+[17.537047] (-) TimerEvent: {}
+[17.638621] (-) TimerEvent: {}
+[17.740122] (-) TimerEvent: {}
+[17.842168] (-) TimerEvent: {}
+[17.943772] (-) TimerEvent: {}
+[18.045316] (-) TimerEvent: {}
+[18.146853] (-) TimerEvent: {}
+[18.248483] (-) TimerEvent: {}
+[18.350746] (-) TimerEvent: {}
+[18.452388] (-) TimerEvent: {}
+[18.554017] (-) TimerEvent: {}
+[18.655574] (-) TimerEvent: {}
+[18.757128] (-) TimerEvent: {}
+[18.858691] (-) TimerEvent: {}
+[18.960334] (-) TimerEvent: {}
+[19.062132] (-) TimerEvent: {}
+[19.163525] (-) TimerEvent: {}
+[19.264967] (-) TimerEvent: {}
+[19.366391] (-) TimerEvent: {}
+[19.467834] (-) TimerEvent: {}
+[19.569337] (-) TimerEvent: {}
+[19.670796] (-) TimerEvent: {}
+[19.772259] (-) TimerEvent: {}
+[19.873702] (-) TimerEvent: {}
+[19.975157] (-) TimerEvent: {}
+[20.076715] (-) TimerEvent: {}
+[20.178241] (-) TimerEvent: {}
+[20.279823] (-) TimerEvent: {}
+[20.381317] (-) TimerEvent: {}
+[20.482824] (-) TimerEvent: {}
+[20.584335] (-) TimerEvent: {}
+[20.686534] (-) TimerEvent: {}
+[20.788618] (-) TimerEvent: {}
+[20.890048] (-) TimerEvent: {}
+[20.991476] (-) TimerEvent: {}
+[21.092940] (-) TimerEvent: {}
+[21.194430] (-) TimerEvent: {}
+[21.295913] (-) TimerEvent: {}
+[21.397382] (-) TimerEvent: {}
+[21.498998] (-) TimerEvent: {}
+[21.600464] (-) TimerEvent: {}
+[21.701884] (-) TimerEvent: {}
+[21.803359] (-) TimerEvent: {}
+[21.904818] (-) TimerEvent: {}
+[22.006311] (-) TimerEvent: {}
+[22.107825] (-) TimerEvent: {}
+[22.209389] (-) TimerEvent: {}
+[22.310880] (-) TimerEvent: {}
+[22.412380] (-) TimerEvent: {}
+[22.513855] (-) TimerEvent: {}
+[22.615297] (-) TimerEvent: {}
+[22.716722] (-) TimerEvent: {}
+[22.818163] (-) TimerEvent: {}
+[22.919930] (-) TimerEvent: {}
+[23.021353] (-) TimerEvent: {}
+[23.122773] (-) TimerEvent: {}
+[23.224180] (-) TimerEvent: {}
+[23.325630] (-) TimerEvent: {}
+[23.427064] (-) TimerEvent: {}
+[23.528597] (-) TimerEvent: {}
+[23.630022] (-) TimerEvent: {}
+[23.731443] (-) TimerEvent: {}
+[23.832895] (-) TimerEvent: {}
+[23.934368] (-) TimerEvent: {}
+[24.035901] (-) TimerEvent: {}
+[24.137392] (-) TimerEvent: {}
+[24.239103] (-) TimerEvent: {}
+[24.340550] (-) TimerEvent: {}
+[24.441967] (-) TimerEvent: {}
+[24.543394] (-) TimerEvent: {}
+[24.644934] (-) TimerEvent: {}
+[24.746320] (-) TimerEvent: {}
+[24.847822] (-) TimerEvent: {}
+[24.949464] (-) TimerEvent: {}
+[25.050901] (-) TimerEvent: {}
+[25.152293] (-) TimerEvent: {}
+[25.253703] (-) TimerEvent: {}
+[25.355120] (-) TimerEvent: {}
+[25.456549] (-) TimerEvent: {}
+[25.557995] (-) TimerEvent: {}
+[25.659509] (-) TimerEvent: {}
+[25.760865] (-) TimerEvent: {}
+[25.862285] (-) TimerEvent: {}
+[25.963698] (-) TimerEvent: {}
+[26.065092] (-) TimerEvent: {}
+[26.166508] (-) TimerEvent: {}
+[26.267901] (-) TimerEvent: {}
+[26.369364] (-) TimerEvent: {}
+[26.470862] (-) TimerEvent: {}
+[26.572277] (-) TimerEvent: {}
+[26.673696] (-) TimerEvent: {}
+[26.775048] (-) TimerEvent: {}
+[26.876448] (-) TimerEvent: {}
+[26.977896] (-) TimerEvent: {}
+[27.079418] (-) TimerEvent: {}
+[27.180857] (-) TimerEvent: {}
+[27.282289] (-) TimerEvent: {}
+[27.383733] (-) TimerEvent: {}
+[27.485185] (-) TimerEvent: {}
+[27.586754] (-) TimerEvent: {}
+[27.688240] (-) TimerEvent: {}
+[27.789876] (-) TimerEvent: {}
+[27.891385] (-) TimerEvent: {}
+[27.992976] (-) TimerEvent: {}
+[28.094497] (-) TimerEvent: {}
+[28.196055] (-) TimerEvent: {}
+[28.297596] (-) TimerEvent: {}
+[28.399160] (-) TimerEvent: {}
+[28.500657] (-) TimerEvent: {}
+[28.602205] (-) TimerEvent: {}
+[28.703722] (-) TimerEvent: {}
+[28.805198] (-) TimerEvent: {}
+[28.906667] (-) TimerEvent: {}
+[29.008115] (-) TimerEvent: {}
+[29.109615] (-) TimerEvent: {}
+[29.211166] (-) TimerEvent: {}
+[29.312629] (-) TimerEvent: {}
+[29.414081] (-) TimerEvent: {}
+[29.515556] (-) TimerEvent: {}
+[29.617001] (-) TimerEvent: {}
+[29.718531] (-) TimerEvent: {}
+[29.820000] (-) TimerEvent: {}
+[29.921447] (-) TimerEvent: {}
+[30.022935] (-) TimerEvent: {}
+[30.124416] (-) TimerEvent: {}
+[30.225922] (-) TimerEvent: {}
+[30.327362] (-) TimerEvent: {}
+[30.429104] (-) TimerEvent: {}
+[30.530548] (-) TimerEvent: {}
+[30.632041] (-) TimerEvent: {}
+[30.733684] (-) TimerEvent: {}
+[30.835079] (-) TimerEvent: {}
+[30.936561] (-) TimerEvent: {}
+[31.037969] (-) TimerEvent: {}
+[31.139446] (-) TimerEvent: {}
+[31.240847] (-) TimerEvent: {}
+[31.342173] (-) TimerEvent: {}
+[31.443520] (-) TimerEvent: {}
+[31.544876] (-) TimerEvent: {}
+[31.646246] (-) TimerEvent: {}
+[31.747612] (-) TimerEvent: {}
+[31.848969] (-) TimerEvent: {}
+[31.950283] (-) TimerEvent: {}
+[32.051586] (-) TimerEvent: {}
+[32.152917] (-) TimerEvent: {}
+[32.254283] (-) TimerEvent: {}
+[32.355653] (-) TimerEvent: {}
+[32.457065] (-) TimerEvent: {}
+[32.558538] (-) TimerEvent: {}
+[32.659953] (-) TimerEvent: {}
+[32.761382] (-) TimerEvent: {}
+[32.862854] (-) TimerEvent: {}
+[32.964311] (-) TimerEvent: {}
+[33.065718] (-) TimerEvent: {}
+[33.167148] (-) TimerEvent: {}
+[33.268734] (-) TimerEvent: {}
+[33.370167] (-) TimerEvent: {}
+[33.471577] (-) TimerEvent: {}
+[33.572956] (-) TimerEvent: {}
+[33.674367] (-) TimerEvent: {}
+[33.775866] (-) TimerEvent: {}
+[33.877383] (-) TimerEvent: {}
+[33.978887] (-) TimerEvent: {}
+[34.080418] (-) TimerEvent: {}
+[34.181872] (-) TimerEvent: {}
+[34.283432] (-) TimerEvent: {}
+[34.384850] (-) TimerEvent: {}
+[34.486296] (-) TimerEvent: {}
+[34.587759] (-) TimerEvent: {}
+[34.689250] (-) TimerEvent: {}
+[34.790726] (-) TimerEvent: {}
+[34.892215] (-) TimerEvent: {}
+[34.993661] (-) TimerEvent: {}
+[35.095131] (-) TimerEvent: {}
+[35.196535] (-) TimerEvent: {}
+[35.297952] (-) TimerEvent: {}
+[35.399478] (-) TimerEvent: {}
+[35.500902] (-) TimerEvent: {}
+[35.602312] (-) TimerEvent: {}
+[35.703758] (-) TimerEvent: {}
+[35.805224] (-) TimerEvent: {}
+[35.906705] (-) TimerEvent: {}
+[36.008148] (-) TimerEvent: {}
+[36.109586] (-) TimerEvent: {}
+[36.210946] (-) TimerEvent: {}
+[36.312366] (-) TimerEvent: {}
+[36.413834] (-) TimerEvent: {}
+[36.515221] (-) TimerEvent: {}
+[36.526927] (servo_response) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable servo_node\x1b[0m\n'}
+[36.615552] (-) TimerEvent: {}
+[36.717001] (-) TimerEvent: {}
+[36.818477] (-) TimerEvent: {}
+[36.919967] (-) TimerEvent: {}
+[37.021761] (-) TimerEvent: {}
+[37.123331] (-) TimerEvent: {}
+[37.224895] (-) TimerEvent: {}
+[37.326334] (-) TimerEvent: {}
+[37.427755] (-) TimerEvent: {}
+[37.529370] (-) TimerEvent: {}
+[37.630679] (-) TimerEvent: {}
+[37.731979] (-) TimerEvent: {}
+[37.833332] (-) TimerEvent: {}
+[37.864625] (servo_response) StdoutLine: {'line': b'[100%] Built target servo_node\n'}
+[37.935267] (servo_response) CommandEnded: {'returncode': 0}
+[37.938169] (-) TimerEvent: {}
+[37.941291] (servo_response) JobProgress: {'identifier': 'servo_response', 'progress': 'install'}
+[38.013681] (servo_response) Command: {'cmd': ['/usr/bin/cmake', '--install', '/root/autonomous_explorer_ws_new/build/servo_response'], 'cwd': '/root/autonomous_explorer_ws_new/build/servo_response', 'env': OrderedDict([('SHELL', '/bin/bash'), ('ROS_VERSION', '2'), ('ROS_PYTHON_VERSION', '3'), ('PWD', '/root/autonomous_explorer_ws_new/build/servo_response'), ('LOGNAME', 'root'), ('XDG_SESSION_TYPE', 'tty'), ('MOTD_SHOWN', 'pam'), ('HOME', '/root'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install/servo_response:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('CMAKE_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('COLCON_PREFIX_PATH', '/root/autonomous_explorer_ws_new/install:/root/wheeltec_joy/install:/root/eulercar/install'), ('SSH_CONNECTION', '192.168.3.35 64895 192.168.3.30 22'), ('XDG_SESSION_CLASS', 'user'), ('PYTHONPATH', '/root/autonomous_explorer_ws_new/build/autonomous_explorer:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('TERM', 'xterm-256color'), ('USER', 'root'), ('SHLVL', '1'), ('XDG_SESSION_ID', 'c3'), ('LD_LIBRARY_PATH', '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('XDG_RUNTIME_DIR', '/run/user/0'), ('ROS_LOCALHOST_ONLY', '0'), ('SSH_CLIENT', '192.168.3.35 64895 22'), ('LC_ALL', 'en_US.UTF-8'), ('PATH', '/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('SSH_TTY', '/dev/pts/1'), ('ROS_DISTRO', 'foxy'), ('OLDPWD', '/root'), ('_', '/usr/bin/env')]), 'shell': False}
+[38.038941] (-) TimerEvent: {}
+[38.075984] (servo_response) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[38.079073] (servo_response) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[38.082268] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/lib/servo_response/servo_node\n'}
+[38.139235] (-) TimerEvent: {}
+[38.140636] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/include/servo_response/servo_node.hpp\n'}
+[38.196225] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/include/servo_response/servo_util.hpp\n'}
+[38.239566] (-) TimerEvent: {}
+[38.255801] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/ament_index/resource_index/package_run_dependencies/servo_response\n'}
+[38.311824] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/ament_index/resource_index/parent_prefix_path/servo_response\n'}
+[38.340153] (-) TimerEvent: {}
+[38.369485] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/environment/ament_prefix_path.sh\n'}
+[38.427302] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/environment/ament_prefix_path.dsv\n'}
+[38.440490] (-) TimerEvent: {}
+[38.483510] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/environment/path.sh\n'}
+[38.540567] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/environment/path.dsv\n'}
+[38.541987] (-) TimerEvent: {}
+[38.597111] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/local_setup.bash\n'}
+[38.642334] (-) TimerEvent: {}
+[38.653634] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/local_setup.sh\n'}
+[38.709724] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/local_setup.zsh\n'}
+[38.742659] (-) TimerEvent: {}
+[38.765327] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/local_setup.dsv\n'}
+[38.821789] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.dsv\n'}
+[38.842932] (-) TimerEvent: {}
+[38.877757] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/ament_index/resource_index/packages/servo_response\n'}
+[38.933025] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/cmake/servo_responseConfig.cmake\n'}
+[38.943296] (-) TimerEvent: {}
+[38.988323] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/cmake/servo_responseConfig-version.cmake\n'}
+[39.043897] (-) TimerEvent: {}
+[39.047852] (servo_response) StdoutLine: {'line': b'-- Symlinking: /root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.xml\n'}
+[39.115360] (servo_response) CommandEnded: {'returncode': 0}
+[39.145379] (-) TimerEvent: {}
+[39.246783] (-) TimerEvent: {}
+[39.259663] (servo_response) JobEnded: {'identifier': 'servo_response', 'rc': 0}
+[39.265713] (-) EventReactorShutdown: {}

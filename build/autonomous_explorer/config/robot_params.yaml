@@ -1,0 +1,33 @@
+# 机器人探索参数配置文件
+explorer:
+  ros__parameters:
+    # 图像参数
+    img_width: 1280
+    img_height: 480
+    
+    # 抓取相关参数
+    grab_threshold: 0.5          # 合适的抓取距离
+    orientation_threshold: 0.1   # 朝向阈值
+    wait_for_grab_timeout: 10.0  # 等待抓取完成的超时时间
+    wait_for_tf_timeout: 1.0     # 等待坐标变换的超时时间
+    wait_for_servo_timeout: 1    # 等待机械臂服务准备时间
+    
+    stop_threshold: 0.5          # 停止探索的距离阈值
+    
+    # 返回原点参数
+    origin_x: -3.0               # 原点X坐标
+    origin_y: -1.0               # 原点Y坐标
+    
+    # 前沿点选择参数
+    target_dist: 20.0            # 前沿点采样范围
+    dist_sigma: 10.0             # 距离权重参数
+    path_obstacle_penalty: 0.01  # 路径障碍物惩罚系数
+    info_gain_radius: 5          # 信息增益计算半径(找不到)
+    
+    # 前沿点检测参数
+    unknown_neighbor_threshold: 3 # 未知邻居数量阈值(找不到)
+    
+    # 双目相机参数
+    focal_length: 540.35         # 焦距
+    baseline: 0.057              # 基线距离
+    

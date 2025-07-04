@@ -1,0 +1,195 @@
+[2.032s] DEBUG:colcon:Command line arguments: ['/usr/local/bin/colcon', 'build', '--symlink-install']
+[2.033s] DEBUG:colcon:Parsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f9fcf7760>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=True, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f9fcf7760>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f9fc55d30>)
+[3.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[3.228s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[3.229s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[3.229s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[3.229s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[3.230s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[3.230s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/root/autonomous_explorer_ws_new'
+[3.231s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[3.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[3.232s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[3.233s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[3.233s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[3.234s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[3.235s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[3.235s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[3.236s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[3.362s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[3.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[3.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[3.364s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[3.364s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[3.365s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[3.366s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[3.367s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[3.368s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[3.368s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[3.369s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[3.370s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[3.371s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[3.371s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[3.372s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[3.372s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[3.373s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[3.374s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[3.374s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[3.374s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[3.375s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[3.375s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[3.376s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[3.376s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[3.377s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[3.377s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[3.377s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[3.378s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[3.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extensions ['ignore', 'ignore_ament_install']
+[3.379s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extension 'ignore'
+[3.380s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extension 'ignore_ament_install'
+[3.381s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extensions ['colcon_pkg']
+[3.381s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extension 'colcon_pkg'
+[3.381s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extensions ['colcon_meta']
+[3.382s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extension 'colcon_meta'
+[3.382s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extensions ['ros']
+[3.383s] Level 1:colcon.colcon_core.package_identification:_identify(src/autonomous_explorer) by extension 'ros'
+[3.413s] DEBUG:colcon.colcon_core.package_identification:Package 'src/autonomous_explorer' with type 'ros.ament_python' and name 'autonomous_explorer'
+[3.414s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extensions ['ignore', 'ignore_ament_install']
+[3.415s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extension 'ignore'
+[3.416s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extension 'ignore_ament_install'
+[3.417s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extensions ['colcon_pkg']
+[3.417s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extension 'colcon_pkg'
+[3.417s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extensions ['colcon_meta']
+[3.418s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extension 'colcon_meta'
+[3.418s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extensions ['ros']
+[3.419s] Level 1:colcon.colcon_core.package_identification:_identify(src/servo_response) by extension 'ros'
+[3.424s] DEBUG:colcon.colcon_core.package_identification:Package 'src/servo_response' with type 'ros.ament_cmake' and name 'servo_response'
+[3.424s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[3.425s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[3.425s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[3.426s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[3.426s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[3.584s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'cmake_args' from command line to 'None'
+[3.584s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'cmake_target' from command line to 'None'
+[3.585s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.585s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'cmake_clean_cache' from command line to 'False'
+[3.585s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'cmake_clean_first' from command line to 'False'
+[3.586s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'cmake_force_configure' from command line to 'False'
+[3.586s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'ament_cmake_args' from command line to 'None'
+[3.586s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'catkin_cmake_args' from command line to 'None'
+[3.586s] Level 5:colcon.colcon_core.verb:set package 'autonomous_explorer' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.587s] DEBUG:colcon.colcon_core.verb:Building package 'autonomous_explorer' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/autonomous_explorer_ws_new/build/autonomous_explorer', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/autonomous_explorer_ws_new/install/autonomous_explorer', 'merge_install': False, 'path': '/root/autonomous_explorer_ws_new/src/autonomous_explorer', 'symlink_install': True, 'test_result_base': None}
+[3.591s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'cmake_args' from command line to 'None'
+[3.592s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'cmake_target' from command line to 'None'
+[3.592s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[3.592s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'cmake_clean_cache' from command line to 'False'
+[3.593s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'cmake_clean_first' from command line to 'False'
+[3.593s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'cmake_force_configure' from command line to 'False'
+[3.593s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'ament_cmake_args' from command line to 'None'
+[3.593s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'catkin_cmake_args' from command line to 'None'
+[3.594s] Level 5:colcon.colcon_core.verb:set package 'servo_response' build argument 'catkin_skip_building_tests' from command line to 'False'
+[3.594s] DEBUG:colcon.colcon_core.verb:Building package 'servo_response' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/autonomous_explorer_ws_new/build/servo_response', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/autonomous_explorer_ws_new/install/servo_response', 'merge_install': False, 'path': '/root/autonomous_explorer_ws_new/src/servo_response', 'symlink_install': True, 'test_result_base': None}
+[3.595s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[3.605s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[3.608s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/autonomous_explorer_ws_new/src/autonomous_explorer' with build type 'ament_python'
+[3.610s] Level 1:colcon.colcon_core.shell:create_environment_hook('autonomous_explorer', 'ament_prefix_path')
+[3.633s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[3.636s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/hook/ament_prefix_path.ps1'
+[3.642s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/hook/ament_prefix_path.dsv'
+[3.646s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/hook/ament_prefix_path.sh'
+[3.654s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.655s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.667s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/autonomous_explorer_ws_new/install/servo_response' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[3.670s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/root/autonomous_explorer_ws_new/install/servo_response' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[3.717s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/root/autonomous_explorer_ws_new/src/servo_response' with build type 'ament_cmake'
+[3.719s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/root/autonomous_explorer_ws_new/src/servo_response'
+[3.723s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.724s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.765s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/autonomous_explorer_ws_new/src/autonomous_explorer'
+[5.767s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.768s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.824s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/autonomous_explorer_ws_new/build/servo_response': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy _=/usr/bin/env /usr/bin/cmake /root/autonomous_explorer_ws_new/src/servo_response -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/root/autonomous_explorer_ws_new/install/servo_response
+[10.758s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/autonomous_explorer_ws_new/build/autonomous_explorer': PYTHONPATH=/root/autonomous_explorer_ws_new/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:${PYTHONPATH} _=/usr/bin/env /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /root/autonomous_explorer_ws_new/build/autonomous_explorer/build --no-deps symlink_data
+[15.701s] Level 1:colcon.colcon_core.shell:create_environment_hook('autonomous_explorer', 'pythonpath_develop')
+[15.705s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/build/autonomous_explorer/share/autonomous_explorer/hook/pythonpath_develop.ps1'
+[15.708s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/autonomous_explorer_ws_new/build/autonomous_explorer' returned '0': PYTHONPATH=/root/autonomous_explorer_ws_new/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:${PYTHONPATH} _=/usr/bin/env /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /root/autonomous_explorer_ws_new/build/autonomous_explorer/build --no-deps symlink_data
+[15.713s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/autonomous_explorer_ws_new/build/autonomous_explorer/share/autonomous_explorer/hook/pythonpath_develop.dsv'
+[15.717s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/build/autonomous_explorer/share/autonomous_explorer/hook/pythonpath_develop.sh'
+[15.759s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer' for CMake module files
+[15.764s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer' for CMake config files
+[15.771s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib'
+[15.773s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer/bin'
+[15.774s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/pkgconfig/autonomous_explorer.pc'
+[15.776s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages'
+[15.777s] Level 1:colcon.colcon_core.shell:create_environment_hook('autonomous_explorer', 'pythonpath')
+[15.780s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/hook/pythonpath.ps1'
+[15.784s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/hook/pythonpath.dsv'
+[15.787s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/hook/pythonpath.sh'
+[15.793s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/autonomous_explorer/bin'
+[15.794s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(autonomous_explorer)
+[15.798s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/package.ps1'
+[15.808s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/package.dsv'
+[15.815s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/package.sh'
+[15.824s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/package.bash'
+[15.833s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/package.zsh'
+[15.842s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/autonomous_explorer_ws_new/install/autonomous_explorer/share/colcon-core/packages/autonomous_explorer)
+[18.478s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/autonomous_explorer_ws_new/build/servo_response' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy _=/usr/bin/env /usr/bin/cmake /root/autonomous_explorer_ws_new/src/servo_response -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/root/autonomous_explorer_ws_new/install/servo_response
+[18.495s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/autonomous_explorer_ws_new/build/servo_response': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy _=/usr/bin/env /usr/bin/cmake --build /root/autonomous_explorer_ws_new/build/servo_response -- -j4 -l4
+[41.541s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/autonomous_explorer_ws_new/build/servo_response' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy _=/usr/bin/env /usr/bin/cmake --build /root/autonomous_explorer_ws_new/build/servo_response -- -j4 -l4
+[41.627s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/autonomous_explorer_ws_new/build/servo_response': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy _=/usr/bin/env /usr/bin/cmake --install /root/autonomous_explorer_ws_new/build/servo_response
+[42.718s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(servo_response)
+[42.722s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response' for CMake module files
+[42.726s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/autonomous_explorer_ws_new/build/servo_response' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/root/autonomous_explorer_ws_new/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy _=/usr/bin/env /usr/bin/cmake --install /root/autonomous_explorer_ws_new/build/servo_response
+[42.730s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response' for CMake config files
+[42.731s] Level 1:colcon.colcon_core.shell:create_environment_hook('servo_response', 'cmake_prefix_path')
+[42.734s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/hook/cmake_prefix_path.ps1'
+[42.739s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/hook/cmake_prefix_path.dsv'
+[42.743s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/hook/cmake_prefix_path.sh'
+[42.751s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/lib'
+[42.752s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/bin'
+[42.752s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/lib/pkgconfig/servo_response.pc'
+[42.754s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/lib/python3.8/site-packages'
+[42.756s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/bin'
+[42.759s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.ps1'
+[42.764s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.dsv'
+[42.769s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.sh'
+[42.773s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.bash'
+[42.777s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.zsh'
+[42.781s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/autonomous_explorer_ws_new/install/servo_response/share/colcon-core/packages/servo_response)
+[42.786s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(servo_response)
+[42.789s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response' for CMake module files
+[42.793s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response' for CMake config files
+[42.795s] Level 1:colcon.colcon_core.shell:create_environment_hook('servo_response', 'cmake_prefix_path')
+[42.797s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/hook/cmake_prefix_path.ps1'
+[42.801s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/hook/cmake_prefix_path.dsv'
+[42.805s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/hook/cmake_prefix_path.sh'
+[42.811s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/lib'
+[42.812s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/bin'
+[42.813s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/lib/pkgconfig/servo_response.pc'
+[42.815s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/lib/python3.8/site-packages'
+[42.816s] Level 1:colcon.colcon_core.environment:checking '/root/autonomous_explorer_ws_new/install/servo_response/bin'
+[42.820s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.ps1'
+[42.838s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.dsv'
+[42.844s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.sh'
+[42.849s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.bash'
+[42.856s] INFO:colcon.colcon_core.shell:Creating package script '/root/autonomous_explorer_ws_new/install/servo_response/share/servo_response/package.zsh'
+[42.861s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/autonomous_explorer_ws_new/install/servo_response/share/colcon-core/packages/servo_response)
+[42.863s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[42.865s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[42.866s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[42.867s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[42.911s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[42.912s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[42.913s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[67.933s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.NoReply: Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.
+[67.934s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[67.936s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/autonomous_explorer_ws_new/install/local_setup.ps1'
+[67.944s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/autonomous_explorer_ws_new/install/_local_setup_util_ps1.py'
+[67.957s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/autonomous_explorer_ws_new/install/setup.ps1'
+[67.968s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/autonomous_explorer_ws_new/install/local_setup.sh'
+[67.974s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/autonomous_explorer_ws_new/install/_local_setup_util_sh.py'
+[67.980s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/autonomous_explorer_ws_new/install/setup.sh'
+[67.994s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/autonomous_explorer_ws_new/install/local_setup.bash'
+[68.000s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/autonomous_explorer_ws_new/install/setup.bash'
+[68.013s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/autonomous_explorer_ws_new/install/local_setup.zsh'
+[68.018s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/autonomous_explorer_ws_new/install/setup.zsh'

@@ -1,0 +1,3 @@
+[console_scripts]
+explorer_node = autonomous_explorer.myexplorer:main
+

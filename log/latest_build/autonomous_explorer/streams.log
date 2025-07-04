@@ -1,0 +1,29 @@
+[7.147s] Invoking command in '/root/autonomous_explorer_ws_new/build/autonomous_explorer': PYTHONPATH=/root/autonomous_explorer_ws_new/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:${PYTHONPATH} _=/usr/bin/env /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /root/autonomous_explorer_ws_new/build/autonomous_explorer/build --no-deps symlink_data
+[9.493s] running develop
+[10.918s] running egg_info
+[10.920s] creating autonomous_explorer.egg-info
+[10.921s] writing autonomous_explorer.egg-info/PKG-INFO
+[10.923s] writing dependency_links to autonomous_explorer.egg-info/dependency_links.txt
+[10.925s] writing entry points to autonomous_explorer.egg-info/entry_points.txt
+[10.926s] writing requirements to autonomous_explorer.egg-info/requires.txt
+[10.928s] writing top-level names to autonomous_explorer.egg-info/top_level.txt
+[10.946s] writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+[11.280s] reading manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+[11.289s] writing manifest file 'autonomous_explorer.egg-info/SOURCES.txt'
+[11.705s] running build_ext
+[11.709s] Creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages/site.py
+[11.725s] Creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages/autonomous-explorer.egg-link (link to .)
+[11.733s] Installing explorer_node script to /root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/autonomous_explorer
+[11.736s] 
+[11.738s] Installed /root/autonomous_explorer_ws_new/build/autonomous_explorer
+[11.740s] running symlink_data
+[11.741s] creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index
+[11.743s] creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index
+[11.744s] creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index/packages
+[11.746s] symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/resource/autonomous_explorer -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/ament_index/resource_index/packages
+[11.747s] symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/package.xml -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer
+[11.748s] creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/launch
+[11.750s] symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/launch/explorer.launch.py -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/launch
+[11.751s] creating /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/config
+[11.752s] symbolically linking /root/autonomous_explorer_ws_new/build/autonomous_explorer/config/robot_params.yaml -> /root/autonomous_explorer_ws_new/install/autonomous_explorer/share/autonomous_explorer/config
+[12.097s] Invoked command in '/root/autonomous_explorer_ws_new/build/autonomous_explorer' returned '0': PYTHONPATH=/root/autonomous_explorer_ws_new/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/autonomous_explorer_ws_new/install/autonomous_explorer/lib/python3.8/site-packages:${PYTHONPATH} _=/usr/bin/env /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /root/autonomous_explorer_ws_new/build/autonomous_explorer/build --no-deps symlink_data
