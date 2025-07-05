@@ -21,6 +21,8 @@ from sensor_msgs.msg import Image
 import tf2_ros
 
 # 机械臂动作bool值将通过参数配置
+LIFT = 1
+LAY = 0
 
 class ExplorerNode(Node):
     def __init__(self):
@@ -612,13 +614,10 @@ class ExplorerNode(Node):
         self.get_logger().info("receiving camera data...")
         if self.process_video('video',0) == None:
             self.get_logger().info("Failed to detect box!")
-            return False
+            return
         else:
-            box_loc = []
             box_loc = self.process_video('video',0)
-            if box_loc == []:
-                self.get_logger().info("failed to get box_loc")
-                
+            self.get_logger().info("box_loc: %f, %f, %f" % (box_loc[0], box_loc[1], box_loc[2]))   
 
             # 2. 变换到世界坐标
             world_box_loc = self.transform2world(self.camera_frame,box_loc)
@@ -663,7 +662,7 @@ class ExplorerNode(Node):
             right_image_point (tuple): 物体在右相机成像平面上的坐标 (u_R, v_R).
 
         Returns:
-            tuple: 物体在相机坐标系下的三维坐标 (X, Y, Z)，单位与基线单位保持一致。
+            tuple: 物体在相机坐标系下的三维浮点数坐标 (X, Y, Z)，单位与基线单位保持一致。
                 如果视差为零，则返回 None。
         """
         u_L, v_L = left_image_point
@@ -784,12 +783,7 @@ class ExplorerNode(Node):
                 
                 # 检测绿色物体
                 _, center_point = self.detect_green_objects(frame)
-                # if False:
-                #     ...
-                #     # cap.release()
-                #     # cv2.destroyAllWindows()
-                #     # return False
-                # else:
+
                 if len(center_point)%2 == 0:
                     for point in center_point:
                         if point[0] >640:
@@ -807,7 +801,7 @@ class ExplorerNode(Node):
                     self.get_logger().info("仅单个相机检测到物体")      
             cap.release()
             cv2.destroyAllWindows()
-            return X,Y,Z
+            return float(X),float(Y),float(Z)
     
     # --------------------------向物块移动并精确判断位姿----------------------------------------
     def grab_box(self, world_box_loc):
@@ -859,7 +853,6 @@ class ExplorerNode(Node):
     
         # 任务：
         # 1. 考虑线程问题
-        # 2. 将servo改为service
         # 3. 整体调整
 
     # 坐标变换
