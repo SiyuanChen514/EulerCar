@@ -23,7 +23,7 @@ explorer:
     dist_sigma: 10.0             # 距离权重参数
     path_obstacle_penalty: 0.01  # 路径障碍物惩罚系数
     info_gain_radius: 5          # 信息增益计算半径(找不到)
-    
+    orientation_w: 1.0           # 导航到目标点是车朝向
     # 前沿点检测参数
     unknown_neighbor_threshold: 3 # 未知邻居数量阈值(找不到)
     
