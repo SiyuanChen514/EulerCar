@@ -144,7 +144,7 @@ class ExplorerNode(Node):
             3.0, self.start_initial_exploration, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
         self.get_logger().info("Waiting for map and odom data before starting exploration...")
 
-    def start_exploration(self):
+    def start_initial_exploration(self):
         if self.map_data is not None and self.robot_position is not None:
             self.get_logger().info("Starting first exploration after data initialization.")
             self.initial_exploration_timer.cancel()
@@ -168,7 +168,7 @@ class ExplorerNode(Node):
         grid_row = int((self.world_y - origin_y) / resolution)
 
         rows, cols = self.map_data.info.height, self.map_data.info.width
-        if 0 <= grid_row < rows and 0 <= grid_col < cols:
+        if -rows <= grid_row < rows and -cols <= grid_col < cols:
             self.robot_position = (grid_row, grid_col)
             '''
             if not self.returning_to_origin:
@@ -443,7 +443,7 @@ class ExplorerNode(Node):
         for r in range(1, rows - 1):
             for c in range(1, cols - 1):
                 # A cell is a potential frontier if it's free (0)
-                if 0 <= map_array[r, c] <= 0.8:
+                if map_array[r, c] == 0:
                     # Extract the 8 neighbors around the current cell
                     neighbors = map_array[r-1:r+2, c-1:c+2].flatten()
                     # Count how many of these neighbors are unknown (-1)
