@@ -20,6 +20,9 @@ import cv2
 from sensor_msgs.msg import Image
 import tf2_ros
 
+from grab_box import grab_box
+from utils import transform2world
+
 # 机械臂动作bool值将通过参数配置
 LIFT = 1
 LAY = 0
@@ -620,34 +623,17 @@ class ExplorerNode(Node):
             self.get_logger().info("box_loc: %f, %f, %f" % (box_loc[0], box_loc[1], box_loc[2]))   
 
             # 2. 变换到世界坐标
-            world_box_loc = self.transform2world(self.camera_frame,box_loc)
+            world_box_loc = transform2world(self,self.camera_frame,box_loc)
             self.get_logger().info("Receiving coordinates")
             # 3. 抓取
-            if not self.grab_box(world_box_loc):
+            if not grab_box(self,world_box_loc):
                 # 是否要重新抓取
                 return False
             else:
                 # 4. 若抓取成功，周期性检查抓取状态
 
                 # 5. 导航到物块放置位置(位置识别)
-                self.navigate_to(0,0)
-                self.get_logger().info("Moving to drop off location!")
-                # 6. 放下物体
-                try:
-                    self.servo_client.wait_for_service(timeout_sec=self.wait_for_servo_timeout)
-                    request = std_srvs.srv.SetBool.Request(LAY)
-                    future = self.servo_client.call(request) # 同步调用
-                    rclpy.spin_until_future_complete(self,future,timeout_sec=self.wait_for_grab_timeout)
-                    if future.result() is not None:
-                        response = future.result()
-                        if response.success:
-                            self.get_logger().info("Placed the box with {response.message}")
-                        else:
-                            self.get_logger().info("Failed to place the box with {response.message}")
-                    else:
-                        self.get_logger().info("Failed to place the box with no response")
-                except Exception as e:
-                    self.get_logger().error(f"Service call failed: {e}")
+                
                 # 7. 继续探索
                 # 从/map，catografer获取地图信息
             
@@ -803,79 +789,9 @@ class ExplorerNode(Node):
             cv2.destroyAllWindows()
             return float(X),float(Y),float(Z)
     
-    # --------------------------向物块移动并精确判断位姿----------------------------------------
-    def grab_box(self, world_box_loc):
-        
-        # 1. 坐标给nav2导航(完善)
-        self.navigate_to(world_box_loc[0],world_box_loc[1])
-        # 2. 判断是否到达目标点(位置和朝向)
-        if not self.check_robot_ready_for_grab(world_box_loc):
-            return False
-         
-        # 3. 向servo发送请求
-        try:
-            self.servo_client.wait_for_service(timeout_sec=self.wait_for_servo_timeout)
-            request = std_srvs.srv.SetBool.Request(LIFT)
-            future = self.servo_client.call(request) # 同步调用
-            # 4. 等待抓取完成
-            rclpy.spin_until_future_complete(self,future,timeout_sec=self.wait_for_grab_timeout)
-            if future.result() is not None:
-                response = future.result()
-                if response.success:
-                    self.get_logger().info("Grabbed the box with {response.message}")
-                    return True
-                else:
-                    self.get_logger().info("Failed to grab the box with {response.message}")
-                    return False
-            else:
-                self.get_logger().info("Failed to grab the box with no response")
-                return False
 
-        except Exception as e:
-            self.get_logger().error(f"Service call failed: {e}")
-            return False
-    
-    def check_robot_ready_for_grab(self,world_target_loc):
-        # 1. 判断是否到达目标点(位置和朝向)
-        distance2target = np.sqrt((self.world_x - world_target_loc[0])**2 + (self.world_y - world_target_loc[1])**2)
-        if distance2target > self.grab_threshold:
-            return False
-        target_yaw = np.arctan2(world_target_loc[1], world_target_loc[0])
-        yaw_diff = abs(target_yaw - self.world_yaw)
-        if yaw_diff > np.pi:
-            yaw_diff = 2*np.pi - yaw_diff
-        if yaw_diff > self.orientation_threshold:
-            return False
-        
-        self.get_logger().info("robot is ready for grab!")
-        return True
 
-    
-        # 任务：
-        # 1. 考虑线程问题
-        # 3. 整体调整
-
-    # 坐标变换
-    def transform2world(self,child_frame,coordinates):
-        try:
-            child_frame_point = PointStamped()
-            child_frame_point.header.frame_id = child_frame
-            child_frame_point.header.stamp = self.get_clock().now().to_msg()
-            child_frame_point.point.x = coordinates[0]
-            child_frame_point.point.y = coordinates[1]
-            child_frame_point.point.z = coordinates[2]
-
-            # 等待变换可用
-            if not self.tf_buffer.can_transform(child_frame, self.world_frame, child_frame_point.header.stamp,timeout=rclpy.duration.Duration(seconds=self.wait_for_tf_timeout)):
-                self.get_logger().warning("Transform from {child_frame} to {self.world_frame} not available!")
-                return None
-
-            # 开始变换
-            world_point = self.tf_buffer.transform(child_frame_point, self.world_frame)
-            return [world_point.point.x, world_point.point.y, world_point.point.z]
-        except Exception as e:
-            self.get_logger().error(f"Coordinate transformation failed: {e}")
-            return None
+   
         
 def main(args=None):
         rclpy.init(args=args)
