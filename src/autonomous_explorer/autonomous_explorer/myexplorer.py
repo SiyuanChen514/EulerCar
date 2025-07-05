@@ -70,9 +70,9 @@ class ExplorerNode(Node):
         self.focal_length = self.get_parameter('focal_length').get_parameter_value().double_value
         self.baseline = self.get_parameter('baseline').get_parameter_value().double_value
 
-        # 强制设置 use_sim_time=True，适用于仿真环境
+        # use_sim_time=False
         self.set_parameters([rclpy.Parameter('use_sim_time', rclpy.Parameter.Type.BOOL, False)])
-        self.get_logger().info("use_sim_time set to: True")
+        self.get_logger().info("use_sim_time set to: False")
 
         # 订阅地图话题
         map_qos_profile = QoSProfile(
@@ -126,8 +126,6 @@ class ExplorerNode(Node):
         self.current_goal_handle: ClientGoalHandle = None
 
         # 定义停止探索的目标点（世界坐标）和阈值
-        self.stop_exploration_x = 0.0
-        self.stop_exploration_y = -1.0
         self.stop_threshold = 0.5
         
         # 周期性识别物块
@@ -165,7 +163,7 @@ class ExplorerNode(Node):
         rows, cols = self.map_data.info.height, self.map_data.info.width
         if 0 <= grid_row < rows and 0 <= grid_col < cols:
             self.robot_position = (grid_row, grid_col)
-
+            '''
             if not self.returning_to_origin:
                 distance_to_stop_point = np.sqrt(
                     (self.world_x - self.stop_exploration_x)**2 +
@@ -177,6 +175,7 @@ class ExplorerNode(Node):
                         f" (distance: {distance_to_stop_point:.2f}m). Stopping exploration and returning to origin."
                     )
                     self.stop_exploration_and_return_to_origin()
+            '''
         else:
             self.get_logger().warning(f"Robot world position ({self.world_x:.2f}, {self.world_y:.2f}) maps to grid ({grid_row}, {grid_col}) out of map bounds.")
 
@@ -228,6 +227,11 @@ class ExplorerNode(Node):
         self.get_logger().info(f"Published {len(frontiers)} frontier markers.")
 
     def navigate_to(self, x, y):
+        # 验证输入参数
+        if x is None or y is None or x == "" or y == "":
+            self.get_logger().error("Invalid navigation goal: x or y is empty or None")
+            self.is_exploring = False
+            return
         # 如果正在返回原点，并且已经有活跃的导航目标，则不发送新的探索目标
         # 否则，可能是返回原点的目标，需要发送
         if self.returning_to_origin and self.current_goal_handle and self.current_goal_handle.status == GoalStatus.ACTIVE:
