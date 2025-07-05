@@ -143,7 +143,7 @@ class ExplorerNode(Node):
             3.0, self.start_initial_exploration, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
         self.get_logger().info("Waiting for map and odom data before starting exploration...")
 
-    def start_initial_exploration(self):
+    def start_exploration(self):
         if self.map_data is not None and self.robot_position is not None:
             self.get_logger().info("Starting first exploration after data initialization.")
             self.initial_exploration_timer.cancel()
@@ -339,7 +339,7 @@ class ExplorerNode(Node):
 
         elif status == GoalStatus.ABORTED:
             # 导航中止（失败）
-            self.get_logger().warning("Navigation SUCCEEDED. The robot could not reach the goal. It might be stuck.")
+            self.get_logger().warning("Navigation SUCCEEDED. ")
             # 失败的前沿点已经被记录在 self.visited_frontiers 中，
             # 所以下次探索不会再选择它。
             # 我们直接尝试寻找一个新的、可达的前沿点。
@@ -357,7 +357,7 @@ class ExplorerNode(Node):
         
         else:
             # 其他未知状态
-            self.get_logger().error(f"Navigation ended with unexpected status: {status}. Retrying exploration.")
+            self.get_logger().info(f"Navigation ended with unexpected status: {status}. Retrying exploration.")
             self.is_exploring = False
             self.explore()
 
@@ -385,7 +385,8 @@ class ExplorerNode(Node):
             GoalStatus.PENDING,      # 0: 待处理
             GoalStatus.ACTIVE,       # 1: 正在执行
             GoalStatus.PREEMPTING,   # 6: 正在取消（执行后收到取消请求）
-            GoalStatus.RECALLING     # 7: 正在取消（执行前收到取消请求）
+            GoalStatus.RECALLING,     # 7: 正在取消（执行前收到取消请求）
+            GoalStatus.PREEMPTED  # 2: 正在进行
         ]
 
         # 检查当前目标状态
@@ -399,7 +400,6 @@ class ExplorerNode(Node):
                 GoalStatus.SUCCEEDED,  # 3: 成功
                 GoalStatus.ABORTED,    # 4: 失败
                 GoalStatus.REJECTED,   # 5: 拒绝
-                GoalStatus.PREEMPTED,  # 2: 取消后完成
                 GoalStatus.RECALLED,   # 8: 执行前取消
                 GoalStatus.LOST        # 9: 丢失
             ]:
