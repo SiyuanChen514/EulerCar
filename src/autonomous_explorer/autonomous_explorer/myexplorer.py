@@ -47,7 +47,8 @@ class ExplorerNode(Node):
                 ('info_gain_radius', 5),
                 ('unknown_neighbor_threshold', 3),
                 ('focal_length', 540.35),
-                ('baseline', 0.057)
+                ('baseline', 0.057),
+                ('orientation_w', 1.0)
             ]
         )
 
@@ -69,7 +70,7 @@ class ExplorerNode(Node):
         self.unknown_neighbor_threshold = self.get_parameter('unknown_neighbor_threshold').get_parameter_value().integer_value
         self.focal_length = self.get_parameter('focal_length').get_parameter_value().double_value
         self.baseline = self.get_parameter('baseline').get_parameter_value().double_value
-
+        self.orientation_w = self.get_parameter('orientation_w').get_parameter_value().double_value
         # use_sim_time=False
         self.set_parameters([rclpy.Parameter('use_sim_time', rclpy.Parameter.Type.BOOL, False)])
         self.get_logger().info("use_sim_time set to: False")
@@ -233,17 +234,37 @@ class ExplorerNode(Node):
             self.is_exploring = False
             return
         # 如果正在返回原点，并且已经有活跃的导航目标，则不发送新的探索目标
-        # 否则，可能是返回原点的目标，需要发送
-        if self.returning_to_origin and self.current_goal_handle and self.current_goal_handle.status == GoalStatus.ACTIVE:
-             self.get_logger().info("Currently returning to origin and a goal is active, skipping new navigation goal.")
-             return
+        # 定义非终止状态（目标仍在处理中）
+        non_terminal_states = [
+            GoalStatus.PENDING,      # 0: 待处理
+            GoalStatus.ACTIVE,       # 1: 正在执行
+            GoalStatus.PREEMPTING,   # 6: 正在取消（执行后收到取消请求）
+            GoalStatus.RECALLING     # 7: 正在取消（执行前收到取消请求）
+        ]
+
+        # 检查是否正在返回原点且有活跃目标
+        if self.returning_to_origin and self.current_goal_handle is not None:
+            if self.current_goal_handle.status in non_terminal_states:
+                self.get_logger().info(f"Currently returning to origin with a non-terminal goal (status: {self.current_goal_handle.status}), skipping new navigation goal.")
+                return
+            # 如果目标已进入终止状态，重置 goal_handle
+            elif self.current_goal_handle.status in [
+                GoalStatus.SUCCEEDED,  # 3: 成功
+                GoalStatus.ABORTED,    # 4: 失败
+                GoalStatus.REJECTED,   # 5: 拒绝
+                GoalStatus.PREEMPTED,  # 2: 取消后完成
+                GoalStatus.RECALLED,   # 8: 执行前取消
+                GoalStatus.LOST        # 9: 丢失
+            ]:
+                self.get_logger().info(f"Previous goal reached terminal state (status: {self.current_goal_handle.status}), resetting goal handle.")
+                self.current_goal_handle = None
 
         goal_msg = PoseStamped()
         goal_msg.header.frame_id = 'map'
         goal_msg.header.stamp = self.get_clock().now().to_msg()
         goal_msg.pose.position.x = float(x)
         goal_msg.pose.position.y = float(y)
-        goal_msg.pose.orientation.w = 1.0 # 机器人的面向方向可能要修改
+        goal_msg.pose.orientation.w = self.orientation_w # 机器人的面向方向可能要修改
 
         nav_goal = NavigateToPose.Goal()
         nav_goal.pose = goal_msg
@@ -303,7 +324,6 @@ class ExplorerNode(Node):
                 # 如果这是“返回原点”的导航，并且成功了
                 self.get_logger().info("Robot successfully returned to origin. Exploration program terminated.")
                 self.publish_frontiers([]) # 清除所有前沿点标记
-                self.destroy_node() # 销毁节点，结束程序
                 return
             else:
                 # 如果这是一次常规的探索导航
@@ -337,26 +357,57 @@ class ExplorerNode(Node):
             self.explore()
 
     def stop_exploration_and_return_to_origin(self):
+        # 检查是否已在返回原点状态
         if self.returning_to_origin:
             self.get_logger().info("Already in returning-to-origin state, skipping new request.")
             return
 
+        # 设置返回原点状态
         self.returning_to_origin = True
+        self.is_exploring = False  # 停止探索循环
+        self.publish_frontiers([])  # 清除已发布的前沿点标记
+        self.get_logger().info("Cleared all frontier markers and stopped exploration.")
 
-        # --- 关键修改部分 ---
-        if self.current_goal_handle and (self.current_goal_handle.status == GoalStatus.ACTIVE):
-            self.get_logger().info("Cancelling current active navigation goal to frontier.")
-            cancel_future = self.current_goal_handle.cancel_goal_async()
-            cancel_future.add_done_callback(self.cancel_goal_callback)
+        # 检查动作服务器是否可用
+        if not self.nav_to_pose_client.wait_for_server(timeout_sec=5.0):
+            self.get_logger().error("Nav2 action server not available, cannot proceed with return to origin!")
+            self.returning_to_origin = False  # 回滚状态
+            self.is_exploring = True  # 恢复探索状态
+            return
+
+        # 定义非终止状态（需要取消的目标状态）
+        non_terminal_states = [
+            GoalStatus.PENDING,      # 0: 待处理
+            GoalStatus.ACTIVE,       # 1: 正在执行
+            GoalStatus.PREEMPTING,   # 6: 正在取消（执行后收到取消请求）
+            GoalStatus.RECALLING     # 7: 正在取消（执行前收到取消请求）
+        ]
+
+        # 检查当前目标状态
+        if self.current_goal_handle is not None:
+            status = self.current_goal_handle.status
+            if status in non_terminal_states:
+                self.get_logger().info(f"Cancelling current navigation goal (status: {status}).")
+                cancel_future = self.current_goal_handle.cancel_goal_async()
+                cancel_future.add_done_callback(self.cancel_goal_callback)
+            elif status in [
+                GoalStatus.SUCCEEDED,  # 3: 成功
+                GoalStatus.ABORTED,    # 4: 失败
+                GoalStatus.REJECTED,   # 5: 拒绝
+                GoalStatus.PREEMPTED,  # 2: 取消后完成
+                GoalStatus.RECALLED,   # 8: 执行前取消
+                GoalStatus.LOST        # 9: 丢失
+            ]:
+                self.get_logger().info(f"Current goal in terminal state (status: {status}), resetting goal handle.")
+                self.current_goal_handle = None
+                self._send_return_to_origin_goal()
+            else:
+                self.get_logger().warn(f"Unexpected goal status: {status}, resetting goal handle.")
+                self.current_goal_handle = None
+                self._send_return_to_origin_goal()
         else:
             self.get_logger().info("No active goal to cancel, proceeding to return to origin.")
-            # 如果没有需要取消的活跃目标，直接发送返回原点的目标
             self._send_return_to_origin_goal()
-        # --- 关键修改部分结束 ---
-
-        self.is_exploring = False # 停止探索循环
-        self.publish_frontiers([]) # 清除已发布的前沿点标记
-        self.get_logger().info("Cleared all frontier markers.")
 
     def cancel_goal_callback(self, future):
         """
