@@ -8,19 +8,28 @@ using std::placeholders::_2;
 
 
 void ServoListener::lift(uint16_t time){
-    run_servo(HORIZONTAL_SERVO_ID, 2500000);
+    run_servo(HORIZONTAL_SERVO_ID, _max_duty_cycle);
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
     close_servo(HORIZONTAL_SERVO_ID);
 }
 
 void ServoListener::lay(uint16_t time){
-    run_servo(HORIZONTAL_SERVO_ID, 500000);
-    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    run_servo(HORIZONTAL_SERVO_ID, _min_duty_cycle);
+    std::this_thread::sleep_for(1std::chrono::milliseconds(time));
     close_servo(HORIZONTAL_SERVO_ID);
 }
 
 ServoListener::ServoListener() : Node("servo_response_node")
 {   
+    this->declare_parameter("delay_time", 500);
+    this->declare_parameter("max_duty_cycle", 2500000);
+    this->declare_parameter("min_duty_cycle", 500000);
+
+    this->get_parameter("delay_time", _delay_time);
+    this->get_parameter("max_duty_cycle", _max_duty_cycle);
+    this->get_parameter("min_duty_cycle", _min_duty_cycle);
+
+
     // 创建服务
     lift_service_ = this->create_service<std_srvs::srv::SetBool>(
         "servo_response",
@@ -35,7 +44,7 @@ void ServoListener::service_callback(const std::shared_ptr<std_srvs::srv::SetBoo
 {
     if (request->data) {
         try {
-        lift();
+        lift(_delay_time);
         response->success = true;
         response->message = "Lift command executed successfully";
         RCLCPP_INFO(this->get_logger(), "Lift command executed successfully");
@@ -46,7 +55,7 @@ void ServoListener::service_callback(const std::shared_ptr<std_srvs::srv::SetBoo
         }
     } else {
         try {
-            lay();
+            lay(_delay_time);
             response->success = true;
             response->message = "Lay command executed successfully";
             RCLCPP_INFO(this->get_logger(), "Lay command executed successfully");
