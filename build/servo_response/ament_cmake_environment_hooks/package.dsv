@@ -1,4 +1,0 @@
-source;share/servo_response/local_setup.bash
-source;share/servo_response/local_setup.dsv
-source;share/servo_response/local_setup.sh
-source;share/servo_response/local_setup.zsh
