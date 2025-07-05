@@ -69,10 +69,9 @@ class ExplorerNode(Node):
         self.unknown_neighbor_threshold = self.get_parameter('unknown_neighbor_threshold').get_parameter_value().integer_value
         self.focal_length = self.get_parameter('focal_length').get_parameter_value().double_value
         self.baseline = self.get_parameter('baseline').get_parameter_value().double_value
-
-        # 强制设置 use_sim_time=True，适用于仿真环境
+        # "use_sim_time set to: False"
         self.set_parameters([rclpy.Parameter('use_sim_time', rclpy.Parameter.Type.BOOL, False)])
-        self.get_logger().info("use_sim_time set to: True")
+        self.get_logger().info("use_sim_time set to: False")
 
         # 订阅地图话题
         map_qos_profile = QoSProfile(
