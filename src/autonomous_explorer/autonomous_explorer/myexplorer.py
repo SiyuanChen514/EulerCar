@@ -125,8 +125,6 @@ class ExplorerNode(Node):
         self.current_goal_handle: ClientGoalHandle = None
 
         # 定义停止探索的目标点（世界坐标）和阈值
-        self.stop_exploration_x = 0.0
-        self.stop_exploration_y = -1.0
         self.stop_threshold = 0.5
         
         # 周期性识别物块
@@ -160,7 +158,7 @@ class ExplorerNode(Node):
 
         grid_col = int((self.world_x - origin_x) / resolution)
         grid_row = int((self.world_y - origin_y) / resolution)
-
+        '''
         rows, cols = self.map_data.info.height, self.map_data.info.width
         if 0 <= grid_row < rows and 0 <= grid_col < cols:
             self.robot_position = (grid_row, grid_col)
@@ -178,7 +176,7 @@ class ExplorerNode(Node):
                     self.stop_exploration_and_return_to_origin()
         else:
             self.get_logger().warning(f"Robot world position ({self.world_x:.2f}, {self.world_y:.2f}) maps to grid ({grid_row}, {grid_col}) out of map bounds.")
-
+        '''
     def map_callback(self, msg):
         self.map_data = msg
 
@@ -227,6 +225,11 @@ class ExplorerNode(Node):
         self.get_logger().info(f"Published {len(frontiers)} frontier markers.")
 
     def navigate_to(self, x, y):
+        # Validate input parameters
+        if x is None or y is None or x == "" or y == "":
+            self.get_logger().error("Invalid navigation goal: x or y is empty or None")
+            self.is_exploring = False
+            return
         # 如果正在返回原点，并且已经有活跃的导航目标，则不发送新的探索目标
         # 否则，可能是返回原点的目标，需要发送
         if self.returning_to_origin and self.current_goal_handle and self.current_goal_handle.status == GoalStatus.ACTIVE:
