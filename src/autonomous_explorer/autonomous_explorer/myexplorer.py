@@ -20,6 +20,7 @@ import cv2
 from sensor_msgs.msg import Image
 import tf2_ros
 
+from img_detect import *
 # 机械臂动作bool值将通过参数配置
 
 class ExplorerNode(Node):
@@ -610,15 +611,16 @@ class ExplorerNode(Node):
     def process_box_callback(self):
         # 1. 接收相机数据,识别物块并获取坐标(失败检测)
         self.get_logger().info("receiving camera data...")
-        if self.process_video('video',0) == None:
+        box_loc = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,0)
+        if box_loc == None:
             self.get_logger().info("Failed to detect box!")
             return False
         else:
-            box_loc = []
-            box_loc = self.process_video('video',0)
-            if box_loc == []:
-                self.get_logger().info("failed to get box_loc")
-                
+            # box_loc = []
+            # box_loc = self.process_video('video',0)
+            # if box_loc == []:
+            #     self.get_logger().info("failed to get box_loc")
+            
 
             # 2. 变换到世界坐标
             world_box_loc = self.transform2world(self.camera_frame,box_loc)
@@ -651,163 +653,6 @@ class ExplorerNode(Node):
                     self.get_logger().error(f"Service call failed: {e}")
                 # 7. 继续探索
                 # 从/map，catografer获取地图信息
-            
-
-    def stereo_depth_estimation(self, left_image_point, right_image_point):
-        """
-        计算双目相机测距，并返回物体的三维坐标。
-        Args:
-            focal_length (float): 相机的焦距 (单位：像素，或与基线单位保持一致).
-            baseline (float): 双目相机光心之间的距离 (即基线，单位：米或毫米).
-            left_image_point (tuple): 物体在左相机成像平面上的坐标 (u_L, v_L).
-            right_image_point (tuple): 物体在右相机成像平面上的坐标 (u_R, v_R).
-
-        Returns:
-            tuple: 物体在相机坐标系下的三维坐标 (X, Y, Z)，单位与基线单位保持一致。
-                如果视差为零，则返回 None。
-        """
-        u_L, v_L = left_image_point
-        u_R, v_R = right_image_point
-
-        # 计算视差
-        disparity = u_L - u_R
-
-        if disparity == 0:
-            self.get_logger().info("视差为零，无法计算深度")
-            return 10000,10000,10000
-
-        # 计算深度 Z
-        Z = (self.focal_length * self.baseline) / disparity
-
-        # 假设左右相机在同一水平线上，且 Y 坐标相同 (v_L ≈ v_R)
-        # 计算 X 和 Y 坐标 (这里我们使用左相机作为参考)
-        # 注意：X 和 Y 的计算需要相机的主点（principal point），这里为了简化，
-        # 假设主点在图像中心，并且 u_L, v_L 是相对于图像中心的坐标。
-        # 如果 u_L, v_L 是相对于图像左上角的坐标，则需要减去主点坐标。
-        # 这里我们假设 u_L 是从主点开始的偏移量。
-        
-        # 实际应用中，更精确的 X, Y 计算需要考虑相机的主点 (cx, cy)
-        # X = (u_L - cx) * Z / focal_length
-        # Y = (v_L - cy) * Z / focal_length
-        
-        # 简化计算：假设图像中心为原点，且 u_L, v_L 为相对于图像中心的坐标。
-        X = ((u_L-self.img_width/4) * Z) / self.focal_length - self.baseline/2
-        Y = ((v_L-self.img_height/2)  * Z) / self.focal_length
-
-        return X, Y, Z
-    
-    def detect_green_objects(self, image, min_area=300):
-        """
-        检测图像中的绿色物体
-        
-        参数:
-            image: 输入的BGR格式图像
-            min_area: 最小有效区域面积，用于过滤小噪点
-        
-        返回:
-            result: 标注后的图像
-            contours: 检测到的轮廓列表
-        """
-        # 转换到HSV色彩空间，更容易分离颜色
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        
-        # 定义绿色在HSV空间中的范围
-        lower_green = np.array([40, 70, 70])   # H(色调): 40-80对应绿色范围
-        upper_green = np.array([80, 255, 255]) # S(饱和度)和V(亮度)适当调整
-        
-        # 创建掩码，只保留绿色区域
-        mask = cv2.inRange(hsv, lower_green, upper_green)
-        
-        # 执行形态学操作，消除小噪点并连接相邻区域
-        kernel = np.ones((10, 10), np.uint8)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)  # 开运算：先腐蚀后膨胀
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel) # 闭运算：先膨胀后腐蚀
-        
-        # 查找轮廓
-        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
-        # 过滤小面积轮廓，并绘制边界框
-        result = image.copy()
-        valid_contours = []
-        center_points = []
-        for contour in contours:
-            area = cv2.contourArea(contour)
-            if area >= min_area:
-                valid_contours.append(contour)
-                
-                # 计算边界框
-                x, y, w, h = cv2.boundingRect(contour)
-                cv2.rectangle(result, (x, y), (x+w, y+h), (0, 255, 0), 2)
-                
-                # 计算轮廓中心
-                M = cv2.moments(contour)
-                if M["m00"] != 0:
-                    cX = int(M["m10"] / M["m00"])
-                    cY = int(M["m01"] / M["m00"])
-                    center_points.append((cX, cY))
-                    cv2.circle(result, (cX, cY), 5, (255, 0, 0), -1)
-                    cv2.putText(result, f"({cX}, {cY})", (x, y-10), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-        
-        return result, center_points
-
-    # 主函数：处理视频流或单张图像
-    def process_video(self, mode='video', source=2):
-        """
-        主函数，支持视频流或单张图像处理
-        
-        参数:
-            mode: 'video' 或 'image'
-            source: 视频设备ID或图像路径
-        返回值：
-            [X,Y,Z]: 三维坐标列表
-        """
-        if mode == 'video':
-            # 打开视频捕获设备
-            cap = cv2.VideoCapture(source)
-            
-            if not cap.isOpened():
-                self.get_logger().info("无法打开视频设备")
-                return 
-            self.get_logger().info("成功打开camera设备")
-            cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.img_width)   # 宽度
-            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.img_height)  # 高度
-            left_point = (0,0)
-            right_point = (0,0)
-            green_num = 10
-            while green_num > 0:
-                green_num -= 1
-                ret, frame = cap.read()
-                if not ret:
-                    self.get_logger().info("无法获取帧")
-                    break
-                
-                # 检测绿色物体
-                _, center_point = self.detect_green_objects(frame)
-                # if False:
-                #     ...
-                #     # cap.release()
-                #     # cv2.destroyAllWindows()
-                #     # return False
-                # else:
-                if len(center_point)%2 == 0:
-                    for point in center_point:
-                        if point[0] >640:
-                            right_point = (point[0]-640,point[1])
-                        else:
-                            left_point = point
-                    
-                    X,Y,Z = self.stereo_depth_estimation(left_point, right_point)
-                    if (X,Y,Z) != (10000,10000,10000):
-                        self.get_logger().info("X: %f, Y: %f, Z: %f" % (X, Y, Z))
-                        break
-                # 显示结果
-                    # cv2.imshow('Green Object Detection', result)
-                else:
-                    self.get_logger().info("仅单个相机检测到物体")      
-            cap.release()
-            cv2.destroyAllWindows()
-            return X,Y,Z
     
     # --------------------------向物块移动并精确判断位姿----------------------------------------
     def grab_box(self, world_box_loc):
