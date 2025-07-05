@@ -20,8 +20,9 @@ import cv2
 from sensor_msgs.msg import Image
 import tf2_ros
 
-from grab_box import grab_box
+from grab_box import *
 from utils import transform2world
+from img_detect import *
 
 # 机械臂动作bool值将通过参数配置
 LIFT = 1
@@ -614,25 +615,24 @@ class ExplorerNode(Node):
     # 主函数
     def process_box_callback(self):
         # 1. 接收相机数据,识别物块并获取坐标(失败检测)
-        self.get_logger().info("receiving camera data...")
-        if self.process_video('video',0) == None:
+        self.get_logger().info("receiving camera data...")  
+        box_loc = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,0)
+        if box_loc == None:
             self.get_logger().info("Failed to detect box!")
             return
         else:
-            box_loc = self.process_video('video',0)
-            self.get_logger().info("box_loc: %f, %f, %f" % (box_loc[0], box_loc[1], box_loc[2]))   
-
+            self.get_logger().info("receiving the box corrdinates successfully!")
             # 2. 变换到世界坐标
             world_box_loc = transform2world(self,self.camera_frame,box_loc)
             self.get_logger().info("Receiving coordinates")
-            # 3. 抓取
-            if not grab_box(self,world_box_loc):
-                # 是否要重新抓取
-                return False
-            else:
+            # 3. 抓取模块
+            if grab_lift_box(self,world_box_loc) is not None:
+                # 失败是否要重新抓取
                 # 4. 若抓取成功，周期性检查抓取状态
 
-                # 5. 导航到物块放置位置(位置识别)
+                # 5. 放置模块
+                world_lay_corrds = [0,0]
+                grab_lay_box(self,world_lay_corrds)
                 
                 # 7. 继续探索
                 # 从/map，catografer获取地图信息

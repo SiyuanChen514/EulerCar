@@ -3,6 +3,17 @@ from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import PointStamped
 
 def transform2world(explorer_node,child_frame,coordinates):
+        """
+        将子坐标系中的坐标转换为世界坐标系中的坐标
+
+        参数:
+            explorer_node: ExplorerNode实例，包含tf_buffer、world_frame等属性
+            child_frame (str): 源坐标系名称，如"camera_link"
+            coordinates (list): 长度为3的列表，包含[x, y, z]坐标值
+
+        返回值:
+            list: 转换后的世界坐标系坐标[x, y, z]，转换失败时返回None
+        """
         try:
             # 将给的坐标转换为pointStamped
             child_frame_point = PointStamped()

@@ -5,6 +5,16 @@ LIFT = 1
 LAY = 0
 
 def check_robot_ready_for_grab(explorer_node,world_target_loc):
+        """
+        检查机器人是否准备好进行抓取操作
+
+        参数:
+            explorer_node: ExplorerNode实例，包含机器人当前位置、朝向和阈值参数
+            world_target_loc (list): 目标位置在世界坐标系中的坐标[x, y, z]
+
+        返回值:
+            bool: 机器人准备就绪返回True，否则返回None
+        """
         # 1. 判断是否到达目标点(位置和朝向)
         distance2target = np.sqrt((explorer_node.world_x - world_target_loc[0])**2 + (explorer_node.world_y - world_target_loc[1])**2)
         if distance2target > explorer_node.grab_threshold:
@@ -20,7 +30,17 @@ def check_robot_ready_for_grab(explorer_node,world_target_loc):
         return True
 
 def grab_lift_box(explorer_node,world_box_loc):
-        
+        """
+        执行机械臂抓取物块的完整流程
+
+        参数:
+            explorer_node: ExplorerNode实例，包含导航、servo服务客户端等功能
+            world_box_loc (list): 物块在世界坐标系中的位置[x, y, z]
+
+        返回值:
+            bool: 抓取成功返回True，失败返回None
+        """
+
         # 1. 坐标给nav2导航(完善)
         explorer_node.navigate_to(world_box_loc[0],world_box_loc[1])
         # 2. 判断是否到达目标点(位置和朝向)
@@ -48,6 +68,16 @@ def grab_lift_box(explorer_node,world_box_loc):
             return
     
 def grab_lay_box(explorer_node,world_lay_corrds):
+    """
+    执行机械臂放置物块的完整流程
+
+    参数:
+        explorer_node: ExplorerNode实例，包含导航、servo服务客户端等功能
+        world_lay_corrds (list): 放置位置在世界坐标系中的坐标[x, y, z]
+
+    返回值:
+        None: 成功True，失败None
+    """
 
     explorer_node.navigate_to(world_lay_corrds)
     explorer_node.get_logger().info("Moving to drop off location!")
@@ -63,10 +93,13 @@ def grab_lay_box(explorer_node,world_lay_corrds):
             response = future.result()
             if response.success:
                 explorer_node.get_logger().info("Placed the box with {response.message}")
+                return True
             else:
                 explorer_node.get_logger().info("Failed to place the box with {response.message}")
+                return
         else:
             explorer_node.get_logger().info("Failed to place the box with no response")
+            return
     except Exception as e:
         explorer_node.get_logger().error(f"Service call failed: {e}")
      
