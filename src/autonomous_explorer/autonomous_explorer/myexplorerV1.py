@@ -504,20 +504,20 @@ class ExplorerNode(Node):
         self.navigate_to(origin_x, origin_y)
 
     def find_frontiers(self, map_array):
+        """
+        检测地图中的前沿点。
+        前沿点定义为值为 -1 的未知点，其邻域内包含已知点或障碍物（0 <= x < 1）。
+        """
         frontiers = []
         rows, cols = map_array.shape
-        # Iterate through the map, excluding the outer border to simplify neighbor checks
         for r in range(1, rows - 1):
             for c in range(1, cols - 1):
-                # A cell is a potential frontier if it's free (0)
-                if map_array[r, c] == 0:
-                    # Extract the 8 neighbors around the current cell
+                if map_array[r, c] == -1:  # 检查未知点
                     neighbors = map_array[r-1:r+2, c-1:c+2].flatten()
-                    # Count how many of these neighbors are unknown (-1)
-                    unknown_neighbor_count = np.sum(neighbors == -1)
-                    # If there are 3 or more unknown neighbors, consider it a frontier
-                    if unknown_neighbor_count >= 3: # Modified condition
+                    # 检查邻域内是否有已知点或障碍物（0 <= x < 1）
+                    if any(0<= n <50 for n in neighbors):
                         frontiers.append((r, c))
+        self.get_logger().info(f"Found {len(frontiers)} frontiers")
         return frontiers
 
     def simplify_frontiers(self, frontiers, map_array):
@@ -544,16 +544,17 @@ class ExplorerNode(Node):
             for dr, dc in radius_2_delta:
                 nr, nc = r + dr, c + dc
                 # 检查是否在地图范围内且是否为障碍物
-                if 0 <= nr < rows and 0 <= nc < cols and map_array[nr][nc] > 0:
+                if 0 <= nr < rows and 0 <= nc < cols and map_array[nr][nc] > 80:
                     return True
             return False
         
         neighbors_dict = {point: get_neighbors(point) for point in frontiers}
-        # 1 <= len(neighbors) <= 3
-        while True:
+        ye = 10
+        while ye>0:
+            ye -=1
             # 边界点：邻居数在1到3之间，或半径2内有障碍物
             boundary_points = [point for point, neighbors in neighbors_dict.items()
-                            if (len(neighbors)>=0) or 
+                            if (1<=len(neighbors) <= 2) or 
                                 has_obstacle_in_radius_2(point, map_array)]
             if not boundary_points:
                 break
@@ -606,7 +607,7 @@ class ExplorerNode(Node):
                 if not (0 <= r < map_array.shape[0] and 0 <= c < map_array.shape[1]):
                     obstacle_in_path = True
                     break
-                if map_array[r][c] > 0:
+                if map_array[r][c] > 90:
                     obstacle_in_path = True
                     break
 

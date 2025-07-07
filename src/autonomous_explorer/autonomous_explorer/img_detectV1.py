@@ -160,7 +160,7 @@ def process_video(focal_length, baseline, img_width,img_height, source=2):
             continue
         
         # 检测绿色物体
-        _, center_point,green_left = detect_green_objects(frame)
+        _, center_point,green_left = detect_green_objects(frame,img_width)
         # 若检测到的点为两个点，则计算深度
         # if len(center_point)%2 == 0 and center_point is not None:
         #     for point in center_point:
