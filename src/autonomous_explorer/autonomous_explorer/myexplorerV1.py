@@ -107,7 +107,7 @@ class ExplorerNode(Node):
 
         # 地图数据
         self.map_data = None
-
+        self.processed_map_array = None
         # 机器人位置（网格坐标）
         self.robot_position = None
 
@@ -154,6 +154,34 @@ class ExplorerNode(Node):
         self.initial_box_timer = self.create_timer(
             4.0, self.detect_box_callback, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
 
+    def preprocess_map_for_frontiers(self, map_data):
+        """
+        预处理地图数据，仅用于前沿点检测。
+        将值 > 50 设为 1，<= 50 设为 0，保留 -1。
+        参数:
+            map_data: nav_msgs/OccupancyGrid 类型的地图数据
+        返回:
+            processed_array: 预处理后的 numpy 数组
+        """
+        # 将地图数据转换为 numpy 数组
+        map_array = np.array(map_data.data).reshape(
+            (map_data.info.height, map_data.info.width))
+
+        # 创建输出数组，保留原始形状
+        processed_array = np.copy(map_array)
+
+        # 预处理逻辑：> 50 设为 1，<= 50 设为 0，保留 -1
+        processed_array[(map_array > 50) & (map_array != -1)] = 1
+        processed_array[(map_array <= 50) & (map_array != -1)] = 0
+
+        # 检查是否有无效值
+        if np.any(np.isnan(processed_array)) or np.any(np.isinf(processed_array)):
+            self.get_logger().warning("Processed map contains NaN or Inf values, returning original map")
+            return map_array
+
+        #self.get_logger().info(f"Preprocessed map for frontiers: {np.sum(processed_array == -1)} unknown, "
+                              #f"{np.sum(processed_array == 0)} free, {np.sum(processed_array == 1)} occupied")
+        return processed_array
 
     def check_state_machine(self):
 
@@ -250,7 +278,18 @@ class ExplorerNode(Node):
             self.get_logger().warning(f"Robot world position ({self.world_x:.2f}, {self.world_y:.2f}) maps to grid ({grid_row}, {grid_col}) out of map bounds.")
 
     def map_callback(self, msg):
+        """
+        接收并存储地图数据，调用预处理函数，初始化机器人位置。
+        """
         self.map_data = msg
+        # 为前沿点检测预处理地图
+        self.processed_map_array = self.preprocess_map_for_frontiers(msg)
+        if self.robot_position is None:
+            # 初始化机器人位置为地图中心（网格坐标）
+            rows, cols = msg.info.height, msg.info.width
+            self.robot_position = (rows // 2, cols // 2)
+            self.get_logger().info(f"Robot position initialized at grid: {self.robot_position}")
+        self.get_logger().info("Map received and preprocessed for frontier detection")
 
     def publish_frontiers(self, frontiers):
         marker_array = MarkerArray()
@@ -513,10 +552,10 @@ class ExplorerNode(Node):
         rows, cols = map_array.shape
         for r in range(1, rows - 1):
             for c in range(1, cols - 1):
-                if map_array[r, c] == -1:  # 检查未知点
+                if map_array[r, c] == 0:  # 检查未知点
                     neighbors = map_array[r-1:r+2, c-1:c+2].flatten()
                     # 检查邻域内是否有已知点或障碍物（0 <= x < 1）
-                    if any(0<= n <50 for n in neighbors):
+                    if any(n == -1 for n in neighbors):
                         frontiers.append((r, c))
         self.get_logger().info(f"Found {len(frontiers)} frontiers")
         return frontiers
@@ -524,15 +563,14 @@ class ExplorerNode(Node):
     def simplify_frontiers(self, frontiers, map_array):
         """
         精简前沿点集合，移除边界点以及周围半径为2内有障碍物的点。
+        使用预处理后的地图。
         """
         frontier_set = set(frontiers)
         neighbors_delta = [(-1, -1), (-1, 0), (-1, 1),
-                        (0, -1),          (0, 1),
-                        (1, -1),  (1, 0),  (1, 1)]
-        
-        # 定义半径为2的检查范围（曼哈顿距离或切比雪夫距离）
+                          (0, -1),          (0, 1),
+                          (1, -1),  (1, 0),  (1, 1)]
         radius_2_delta = [(dr, dc) for dr in range(-2, 3) for dc in range(-2, 3)
-                        if not (dr == 0 and dc == 0)]  # 排除自身
+                          if not (dr == 0 and dc == 0)]
         
         def get_neighbors(point):
             r, c = point
@@ -544,19 +582,15 @@ class ExplorerNode(Node):
             rows, cols = len(map_array), len(map_array[0])
             for dr, dc in radius_2_delta:
                 nr, nc = r + dr, c + dc
-                # 检查是否在地图范围内且是否为障碍物
-                if 0 <= nr < rows and 0 <= nc < cols and map_array[nr][nc] > 80:
+                if 0 <= nr < rows and 0 <= nc < cols and map_array[nr][nc] == 1:  # 使用预处理后的障碍物值
                     return True
             return False
         
         neighbors_dict = {point: get_neighbors(point) for point in frontiers}
-        ye = 10
-        while ye>0:
-            ye -=1
-            # 边界点：邻居数在1到3之间，或半径2内有障碍物
+        while True:
             boundary_points = [point for point, neighbors in neighbors_dict.items()
-                            if (1<=len(neighbors) <= 2) or 
-                                has_obstacle_in_radius_2(point, map_array)]
+                               if (1 <= len(neighbors) <= 3) or 
+                               has_obstacle_in_radius_2(point, map_array)]
             if not boundary_points:
                 break
             for point in boundary_points:
@@ -580,57 +614,46 @@ class ExplorerNode(Node):
         return unknown_count
 
     def choose_frontier(self, frontiers):
-        if not frontiers or self.robot_position is None:
+        """
+        优化选择前沿点：基于信息增益和欧几里得距离。
+        使用预处理后的地图。
+        """
+        if not frontiers:
             return None
 
-        map_array = np.array(self.map_data.data).reshape(
-            (self.map_data.info.height, self.map_data.info.width))
-
+        map_array = self.processed_map_array  # 使用预处理后的地图
         best_score = float('-inf')
         chosen_frontier = None
-        self.target_dist = 20.0
-        self.dist_sigma = 10.0
-        self.path_obstacle_penalty = 0.01
-
+        target_dist = 20.0
+        dist_sigma = 5.0
         for frontier in frontiers:
             if frontier in self.visited_frontiers:
                 continue
 
-            euclidean_dist = np.sqrt((frontier[0] - self.robot_position[0])**2 +
+            euclidean_dist = np.sqrt((frontier[0] - self.robot_position[0])**2 + 
                                      (frontier[1] - self.robot_position[1])**2)
-
             info_gain = self.estimate_info_gain(map_array, frontier, radius=5)
-
+            path = list(bresenham(self.robot_position[0], self.robot_position[1], 
+                                  frontier[0], frontier[1]))
             obstacle_in_path = False
-            path = list(bresenham(self.robot_position[0], self.robot_position[1],
-                                frontier[0], frontier[1]))
-            for (r, c) in path:
-                if not (0 <= r < map_array.shape[0] and 0 <= c < map_array.shape[1]):
+            for (nr, nc) in path:
+                if map_array[nr][nc] == 1:  # 使用预处理后的障碍物值
                     obstacle_in_path = True
                     break
-                if map_array[r][c] > 90:
-                    obstacle_in_path = True
-                    break
-
-            dist_weight = np.exp(-((euclidean_dist - self.target_dist) ** 2) / (2 * self.dist_sigma ** 2))
+            dist_weight = np.exp(-((euclidean_dist - target_dist) ** 2) / (2 * dist_sigma ** 2))
             score = info_gain * dist_weight
-
             if obstacle_in_path:
-                score *= self.path_obstacle_penalty
-
-            score += np.random.uniform(0.0, 0.001)
-
+                score *= 0.1
+            score += np.random.uniform(0.0, 0.1)
             if score > best_score:
                 best_score = score
                 chosen_frontier = frontier
 
         if chosen_frontier:
             self.visited_frontiers.add(chosen_frontier)
-            self.get_logger().info(f"Chosen frontier: {chosen_frontier} with score: {best_score:.2f}, "
-                                   f"distance: {np.sqrt((chosen_frontier[0] - self.robot_position[0])**2 + (chosen_frontier[1] - self.robot_position[1])**2):.2f} grid units, "
-                                   f"info gain: {self.estimate_info_gain(map_array, chosen_frontier):.0f}.")
+            self.get_logger().info(f"Chosen frontier: {chosen_frontier} with score: {best_score}")
         else:
-            self.get_logger().warning("No valid frontier found after scoring.")
+            self.get_logger().warning("No valid frontier found")
 
         return chosen_frontier
 
@@ -645,26 +668,18 @@ class ExplorerNode(Node):
 
         if self.map_data is None or self.robot_position is None:
             self.get_logger().warning("Map data or robot position not available, cannot start exploration.")
-            if not hasattr(self, 'initial_exploration_timer') or not self.initial_exploration_timer.is_ready():
-                 self.initial_exploration_timer = self.create_timer(
-                    3.0, self.start_initial_exploration, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
             return
 
         self.is_exploring = True
-
-        map_array = np.array(self.map_data.data).reshape(
-            (self.map_data.info.height, self.map_data.info.width))
-
-        raw_frontiers = self.find_frontiers(map_array)
-        if not raw_frontiers:
+        frontiers = self.find_frontiers(self.processed_map_array)
+        if not frontiers:
             self.get_logger().info("No more frontiers found. Exploration complete!")
             self.is_exploring = False
             return
 
-        simplified_frontiers = self.simplify_frontiers(raw_frontiers, map_array)
-        self.get_logger().info(f"Found {len(raw_frontiers)} raw frontiers, simplified to {len(simplified_frontiers)} actionable points.")
-
+        simplified_frontiers = self.simplify_frontiers(frontiers, self.processed_map_array)
         self.publish_frontiers(simplified_frontiers)
+        self.get_logger().info(f"Found {len(frontiers)} frontiers, simplified to {len(simplified_frontiers)} actionable points.")
 
         chosen_frontier = self.choose_frontier(simplified_frontiers)
 
