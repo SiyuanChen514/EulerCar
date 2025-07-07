@@ -24,12 +24,19 @@ def transform2world(explorer_node,child_frame,coordinates):
             child_frame_point.point.z = coordinates[2]
 
             # 等待变换可用
-            if not explorer_node.tf_buffer.can_transform(child_frame, explorer_node.world_frame, child_frame_point.header.stamp,timeout=rclpy.duration.Duration(seconds=explorer_node.wait_for_tf_timeout)):
+            if not explorer_node.tf_buffer.can_transform(child_frame, 
+                                                        explorer_node.world_frame, 
+                                                        child_frame_point.header.stamp,
+                                                        timeout=rclpy.duration.Duration(seconds=explorer_node.wait_for_tf_timeout)):
                 explorer_node.get_logger().info("Transform from {child_frame} to {explorer_node.world_frame} not available!")
                 return
 
             # 开始变换
-            world_point = explorer_node.tf_buffer.transform(child_frame_point, explorer_node.world_frame)
+            world_point = explorer_node.tf_buffer.transform(child_frame_point,
+                                                            explorer_node.world_frame,
+                                                            timeout=rclpy.duration.Duration(seconds=explorer_node.wait_for_tf_timeout))
+            explorer_node.getlogger().info(f'Transformed point from {child_frame} to {explorer_node.world_frame}: '
+                f'x={world_point.point.x:.3f}, y={world_point.point.y:.3f}, z={world_point.point.z:.3f}')
             return [world_point.point.x, world_point.point.y, world_point.point.z]
         except Exception as e:
             explorer_node.get_logger().error(f"Coordinate transformation failed: {e}")

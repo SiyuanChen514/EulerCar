@@ -122,9 +122,8 @@ class ExplorerNode(Node):
         self.tf_listener = tf2_ros.TransformListener(self.tf_buffer, self)
 
         # 定义坐标系
-        self.camera_frame = "camera_link"
-        self.world_frame = "map"
-
+        self.camera_frame = "double_camera_link"
+        self.world_frame = "laser"
 
         self.print_state_count = 0
         # 添加标志位防止重复探索
@@ -150,7 +149,6 @@ class ExplorerNode(Node):
         # 状态机定时器
         self.check_StateMachine_timer = self.create_timer(1.0, self.check_state_machine, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
         self.car_state = "init"
-       
         
         # 周期性识别物块
         self.initial_box_timer = self.create_timer(
