@@ -123,7 +123,7 @@ class ExplorerNode(Node):
 
         # 定义坐标系
         self.camera_frame = "double_camera_link"
-        self.world_frame = "laser"
+        self.world_frame = "map"
 
         self.print_state_count = 0
         # 添加标志位防止重复探索
