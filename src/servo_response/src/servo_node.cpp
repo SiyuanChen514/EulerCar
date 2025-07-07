@@ -7,23 +7,23 @@ using std::placeholders::_2;
 
 
 
-void ServoListener::lift(uint16_t time){
+void ServoListener::_close(){
     run_servo(HORIZONTAL_SERVO_ID, _max_duty_cycle);
-    std::this_thread::sleep_for(std::chrono::milliseconds(time));
-    close_servo(HORIZONTAL_SERVO_ID);
+    // std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    // close_servo(HORIZONTAL_SERVO_ID);
 }
 
-void ServoListener::lay(uint16_t time){
+void ServoListener::open(){
     run_servo(HORIZONTAL_SERVO_ID, _min_duty_cycle);
-    std::this_thread::sleep_for(1std::chrono::milliseconds(time));
-    close_servo(HORIZONTAL_SERVO_ID);
+    // std::this_thread::sleep_for(1std::chrono::milliseconds(time));
+    // close_servo(HORIZONTAL_SERVO_ID);
 }
 
 ServoListener::ServoListener() : Node("servo_response_node")
 {   
     this->declare_parameter("delay_time", 500);
-    this->declare_parameter("max_duty_cycle", 2500000);
-    this->declare_parameter("min_duty_cycle", 500000);
+    this->declare_parameter("max_duty_cycle", 1900000);
+    this->declare_parameter("min_duty_cycle", 1200000);
 
     this->get_parameter("delay_time", _delay_time);
     this->get_parameter("max_duty_cycle", _max_duty_cycle);
@@ -44,26 +44,42 @@ void ServoListener::service_callback(const std::shared_ptr<std_srvs::srv::SetBoo
 {
     if (request->data) {
         try {
-        lift(_delay_time);
+        _close();
         response->success = true;
         response->message = "Lift command executed successfully";
+        stop_timer = this->create_wall_timer(
+            std::chrono::milliseconds(500),
+            [this]() {
+                RCLCPP_INFO(this->get_logger(), "Servo Successfully!");
+                close_servo(HORIZONTAL_SERVO_ID);
+                stop_timer->cancel(); 
+            }
+        );
         RCLCPP_INFO(this->get_logger(), "Lift command executed successfully");
         } catch (const std::exception& e) {
-        response->success = false;
-        response->message = "Failed to execute lift command: " + std::string(e.what());
-        RCLCPP_ERROR(this->get_logger(), "Failed to execute lift command: %s", e.what());
+            response->success = false;
+            response->message = "Failed to execute lift command: " + std::string(e.what());
+            RCLCPP_ERROR(this->get_logger(), "Failed to execute lift command: %s", e.what());
         }
     } else {
         try {
-            lay(_delay_time);
+            open();
             response->success = true;
             response->message = "Lay command executed successfully";
+            stop_timer = this->create_wall_timer(
+                std::chrono::milliseconds(250),
+                [this]() {
+                    RCLCPP_INFO(this->get_logger(), "Servo Successfully!");
+                    close_servo(HORIZONTAL_SERVO_ID);
+                    stop_timer->cancel(); 
+                }
+        );
             RCLCPP_INFO(this->get_logger(), "Lay command executed successfully");
         } catch (const std::exception& e) {
             response->success = false;
             response->message = "Failed to execute lay command: " + std::string(e.what());
             RCLCPP_ERROR(this->get_logger(), "Failed to execute lay command: %s", e.what());
-            }
+        }
     }
 }
 
