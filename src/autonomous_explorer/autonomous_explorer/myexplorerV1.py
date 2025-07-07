@@ -190,13 +190,16 @@ class ExplorerNode(Node):
                     return
             # 检测是否到达目标点
             # 鲁棒性
-            if (self.robot_position[0] - self.explore_goal[0])**2 + (self.robot_position[1] - self.explore_goal[1])**2 < 0.005:
-                self.explore_goal = []
-                self.change_state("explore")
-                return
-            else:
-                self.navigate_to(self.explore_goal)
-                return
+            try:
+                if (self.robot_position[0] - self.explore_goal[0])**2 + (self.robot_position[1] - self.explore_goal[1])**2 < 0.005:
+                    self.explore_goal = []
+                    self.change_state("explore")
+                    return
+                else:
+                    self.navigate_to(self.explore_goal)
+                    return
+            except Exception as e:
+                self.get_logger().info("Error in moving to the goal:" + str(e))
         if self.car_state == "grab":
             if self.grabbed:
                 self.change_state("return")
@@ -679,10 +682,7 @@ class ExplorerNode(Node):
 
     # --------------------------------物块识别----------------------------------
     
-    # 主函数
-
-
-        
+    # 主函数 
     def detect_box_callback(self):
         """
         定时器回调函数，用于检测物块并赋值位置
@@ -697,7 +697,7 @@ class ExplorerNode(Node):
         self.get_logger().info("receiving camera data...")  
         box_loc = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,0)
         if box_loc == None:
-            self.get_logger().info("Failed to detect box!")
+            self.get_logger().info("Detect no box!")
             return
         else:
             self.get_logger().info("receiving the box corrdinates successfully!")

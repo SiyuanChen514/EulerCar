@@ -140,12 +140,12 @@ def process_video(focal_length, baseline, img_width,img_height, source=2):
     Z = None
 
 
-        # 打开视频捕获设备
+    # 打开视频捕获设备
     cap = cv2.VideoCapture(source)
     
     if not cap.isOpened():
         print("无法打开视频设备")
-        return None
+        return
     print("成功打开camera设备")
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, img_width)   # 宽度
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, img_height)  # 高度
@@ -196,5 +196,5 @@ def process_video(focal_length, baseline, img_width,img_height, source=2):
     if detect_success:
         return [X, Y, Z]
     else:
-        return []
+        return
     
