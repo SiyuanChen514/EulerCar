@@ -34,8 +34,8 @@ def grab_lift_box(explorer_node,world_box_loc):
         执行机械臂抓取物块的完整流程
 
         参数:
-            explorer_node: ExplorerNode实例，包含导航、servo服务客户端等功能
-            world_box_loc (list): 物块在世界坐标系中的位置[x, y, z]
+            explorer_node: ExplorerNode实例
+            world_box_loc (list): 物块的世界坐标[x, y, z]
 
         返回值:
             bool: 抓取成功返回True，失败返回None
@@ -59,6 +59,9 @@ def grab_lift_box(explorer_node,world_box_loc):
                         return True
                     else:
                         explorer_node.get_logger().info("Failed to grab the box with {response.message}")
+                        
+                        # 是否要重新抓取
+                        
                         return
                 else:
                     explorer_node.get_logger().info("Failed to grab the box with no response")

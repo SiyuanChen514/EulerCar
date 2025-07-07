@@ -25,7 +25,7 @@ def transform2world(explorer_node,child_frame,coordinates):
 
             # 等待变换可用
             if not explorer_node.tf_buffer.can_transform(child_frame, explorer_node.world_frame, child_frame_point.header.stamp,timeout=rclpy.duration.Duration(seconds=explorer_node.wait_for_tf_timeout)):
-                explorer_node.get_logger().warning("Transform from {child_frame} to {explorer_node.world_frame} not available!")
+                explorer_node.get_logger().info("Transform from {child_frame} to {explorer_node.world_frame} not available!")
                 return
 
             # 开始变换

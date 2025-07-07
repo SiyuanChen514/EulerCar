@@ -154,7 +154,7 @@ class ExplorerNode(Node):
         
         # 周期性识别物块
         self.initial_box_timer = self.create_timer(
-            4.0, self.process_box_callback, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
+            4.0, self.detect_box_callback, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
 
 
     def check_state_machine(self):
@@ -183,12 +183,13 @@ class ExplorerNode(Node):
                 self.explore()
                 return  
         if self.car_state == "moving":
-            # 检测是否进行抓取
+            # 检测获取到世界坐标并进行抓取
             if self.beginGrab:
                     self.change_state("grab")
                     self.beginGrab = False
                     return
             # 检测是否到达目标点
+            # 鲁棒性
             if (self.robot_position[0] - self.explore_goal[0])**2 + (self.robot_position[1] - self.explore_goal[1])**2 < 0.005:
                 self.explore_goal = []
                 self.change_state("explore")
@@ -200,8 +201,9 @@ class ExplorerNode(Node):
             if self.grabbed:
                 self.change_state("return")
             else:
-                # 调整位置进行抓取
-                self.grabbed = self.grab()
+                if grab_lift_box(self,self.world_box_loc) is not None:
+                    self.grabbed = True
+                    return
         if self.car_state == "return":
             self.explore_goal = (0,0)
             self.change_state("moving")
@@ -680,7 +682,16 @@ class ExplorerNode(Node):
 
 
         
-    def process_box_callback(self):
+    def detect_box_callback(self):
+        """
+        定时器回调函数，用于检测物块并赋值位置
+        赋值标志beginGrab
+        self.world_box_loc: 世界坐标系下的物块坐标
+        参数:
+            None
+        返回值:
+            成功为True，失败为None
+        """
         # 1. 接收相机数据,识别物块并获取坐标(失败检测)
         self.get_logger().info("receiving camera data...")  
         box_loc = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,0)
@@ -688,11 +699,16 @@ class ExplorerNode(Node):
             self.get_logger().info("Failed to detect box!")
             return
         else:
-            self.beginGrab = True
             self.get_logger().info("receiving the box corrdinates successfully!")
             # 2. 变换到世界坐标
-            world_box_loc = transform2world(self,self.camera_frame,box_loc)
-            self.get_logger().info("Receiving coordinates")
+            self.world_box_loc = transform2world(self,self.camera_frame,box_loc)
+            if self.world_box_loc is not None:
+                self.get_logger().info("transforming coordinates successfully!")
+                self.beginGrab = True
+                return True
+            else:
+                self.get_logger().info("Failed to transform coordinates!")
+                return
             # 3. 抓取模块
             # if grab_lift_box(self,world_box_loc) is not None:
             #     # 失败是否要重新抓取
