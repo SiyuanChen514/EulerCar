@@ -65,7 +65,7 @@ class GrabNode(Node):
 
     def detectCallback(self):
         self.get_logger().info("receiving camera data...")  
-        self.box_location = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,2)
+        self.box_location = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,0)
         if self.box_location == [-1,-1,-1] or self.box_location == []:
             self.get_logger().info("Failed to detect box!")
             return
