@@ -1,0 +1,25 @@
+[6.760s] Invoking command in '/root/EulerCar_v_4/src/autonomous_explorer': PYTHONPATH=/root/EulerCar_v_4/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages:${PYTHONPATH} _=/usr/bin/env /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autonomous_explorer build --build-base /root/EulerCar_v_4/build/autonomous_explorer/build install --record /root/EulerCar_v_4/build/autonomous_explorer/install.log --install-scripts $base/lib/autonomous_explorer --single-version-externally-managed install_data
+[8.799s] running egg_info
+[8.808s] writing ../../build/autonomous_explorer/autonomous_explorer.egg-info/PKG-INFO
+[8.811s] writing dependency_links to ../../build/autonomous_explorer/autonomous_explorer.egg-info/dependency_links.txt
+[8.813s] writing entry points to ../../build/autonomous_explorer/autonomous_explorer.egg-info/entry_points.txt
+[8.814s] writing requirements to ../../build/autonomous_explorer/autonomous_explorer.egg-info/requires.txt
+[8.816s] writing top-level names to ../../build/autonomous_explorer/autonomous_explorer.egg-info/top_level.txt
+[9.170s] reading manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+[9.182s] writing manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+[9.183s] running build
+[9.186s] running build_py
+[9.187s] copying autonomous_explorer/detect_and_grabV1.py -> /root/EulerCar_v_4/build/autonomous_explorer/build/lib/autonomous_explorer
+[9.191s] running install
+[9.199s] running install_lib
+[9.209s] copying /root/EulerCar_v_4/build/autonomous_explorer/build/lib/autonomous_explorer/detect_and_grabV1.py -> /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer
+[9.216s] byte-compiling /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer/detect_and_grabV1.py to detect_and_grabV1.cpython-38.pyc
+[9.234s] running install_data
+[9.236s] running install_egg_info
+[9.251s] removing '/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer-1.0.0-py3.8.egg-info' (and everything under it)
+[9.254s] Copying ../../build/autonomous_explorer/autonomous_explorer.egg-info to /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer-1.0.0-py3.8.egg-info
+[9.262s] running install_scripts
+[9.425s] Installing detect_node script to /root/EulerCar_v_4/install/autonomous_explorer/lib/autonomous_explorer
+[9.426s] Installing explorer_node script to /root/EulerCar_v_4/install/autonomous_explorer/lib/autonomous_explorer
+[9.433s] writing list of installed files to '/root/EulerCar_v_4/build/autonomous_explorer/install.log'
+[9.714s] Invoked command in '/root/EulerCar_v_4/src/autonomous_explorer' returned '0': PYTHONPATH=/root/EulerCar_v_4/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages:${PYTHONPATH} _=/usr/bin/env /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autonomous_explorer build --build-base /root/EulerCar_v_4/build/autonomous_explorer/build install --record /root/EulerCar_v_4/build/autonomous_explorer/install.log --install-scripts $base/lib/autonomous_explorer --single-version-externally-managed install_data

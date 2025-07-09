@@ -1,0 +1,4 @@
+bresenham
+numpy
+opencv-python
+setuptools

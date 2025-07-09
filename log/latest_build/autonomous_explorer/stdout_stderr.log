@@ -1,0 +1,23 @@
+running egg_info
+writing ../../build/autonomous_explorer/autonomous_explorer.egg-info/PKG-INFO
+writing dependency_links to ../../build/autonomous_explorer/autonomous_explorer.egg-info/dependency_links.txt
+writing entry points to ../../build/autonomous_explorer/autonomous_explorer.egg-info/entry_points.txt
+writing requirements to ../../build/autonomous_explorer/autonomous_explorer.egg-info/requires.txt
+writing top-level names to ../../build/autonomous_explorer/autonomous_explorer.egg-info/top_level.txt
+reading manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+writing manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'
+running build
+running build_py
+copying autonomous_explorer/detect_and_grabV1.py -> /root/EulerCar_v_4/build/autonomous_explorer/build/lib/autonomous_explorer
+running install
+running install_lib
+copying /root/EulerCar_v_4/build/autonomous_explorer/build/lib/autonomous_explorer/detect_and_grabV1.py -> /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer
+byte-compiling /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer/detect_and_grabV1.py to detect_and_grabV1.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer-1.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/autonomous_explorer/autonomous_explorer.egg-info to /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer-1.0.0-py3.8.egg-info
+running install_scripts
+Installing detect_node script to /root/EulerCar_v_4/install/autonomous_explorer/lib/autonomous_explorer
+Installing explorer_node script to /root/EulerCar_v_4/install/autonomous_explorer/lib/autonomous_explorer
+writing list of installed files to '/root/EulerCar_v_4/build/autonomous_explorer/install.log'

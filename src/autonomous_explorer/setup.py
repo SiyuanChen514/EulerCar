@@ -26,7 +26,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'explorer_node = autonomous_explorer.myexplorer:main', # 创建了可执行文件，运行myexplorer.py中的main函数
+            'explorer_node = autonomous_explorer.myexplorer:main',
+            'detect_node = autonomous_explorer.detect_and_grabV1:main', # 创建了可执行文件，运行myexplorer.py中的main函数
         ],
     },
 )

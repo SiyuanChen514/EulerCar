@@ -1,0 +1,178 @@
+[0.000000] (-) TimerEvent: {}
+[0.003164] (autonomous_explorer) JobQueued: {'identifier': 'autonomous_explorer', 'dependencies': OrderedDict()}
+[0.004357] (servo_response) JobQueued: {'identifier': 'servo_response', 'dependencies': OrderedDict()}
+[0.006730] (autonomous_explorer) JobStarted: {'identifier': 'autonomous_explorer'}
+[0.094943] (-) TimerEvent: {}
+[0.127389] (servo_response) JobStarted: {'identifier': 'servo_response'}
+[0.195603] (-) TimerEvent: {}
+[0.299980] (-) TimerEvent: {}
+[0.401846] (-) TimerEvent: {}
+[0.503587] (-) TimerEvent: {}
+[0.605133] (-) TimerEvent: {}
+[0.706560] (-) TimerEvent: {}
+[0.808050] (-) TimerEvent: {}
+[0.909459] (-) TimerEvent: {}
+[1.011021] (-) TimerEvent: {}
+[1.113277] (-) TimerEvent: {}
+[1.214831] (-) TimerEvent: {}
+[1.316797] (-) TimerEvent: {}
+[1.419131] (-) TimerEvent: {}
+[1.520623] (-) TimerEvent: {}
+[1.622327] (-) TimerEvent: {}
+[1.724467] (-) TimerEvent: {}
+[1.825916] (-) TimerEvent: {}
+[1.927872] (-) TimerEvent: {}
+[2.029491] (-) TimerEvent: {}
+[2.131356] (-) TimerEvent: {}
+[2.232982] (-) TimerEvent: {}
+[2.334589] (-) TimerEvent: {}
+[2.436195] (-) TimerEvent: {}
+[2.537726] (-) TimerEvent: {}
+[2.639243] (-) TimerEvent: {}
+[2.743110] (-) TimerEvent: {}
+[2.793734] (servo_response) JobProgress: {'identifier': 'servo_response', 'progress': 'cmake'}
+[2.805869] (servo_response) JobProgress: {'identifier': 'servo_response', 'progress': 'build'}
+[2.816444] (servo_response) Command: {'cmd': ['/usr/bin/cmake', '--build', '/root/EulerCar_v_4/build/servo_response', '--', '-j4', '-l4'], 'cwd': '/root/EulerCar_v_4/build/servo_response', 'env': OrderedDict([('SHELL', '/bin/bash'), ('ROS_VERSION', '2'), ('COLORTERM', 'truecolor'), ('TERM_PROGRAM_VERSION', '1.90.0'), ('ROS_PYTHON_VERSION', '3'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('LC_NAME', 'zh_CN.UTF-8'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('PWD', '/root/EulerCar_v_4/build/servo_response'), ('LOGNAME', 'root'), ('XDG_SESSION_TYPE', 'tty'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/node'), ('MOTD_SHOWN', 'pam'), ('HOME', '/root'), ('LC_PAPER', 'zh_CN.UTF-8'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('AMENT_PREFIX_PATH', '/root/EulerCar_v_4/install/servo_response:/root/EulerCar_v_4/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('GIT_ASKPASS', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/extensions/git/dist/askpass.sh'), ('CMAKE_PREFIX_PATH', '/root/EulerCar_v_4/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/EulerCar_v_4/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('COLCON_PREFIX_PATH', '/root/EulerCar_v_4/install:/root/wheeltec_joy/install:/root/eulercar/install'), ('SSH_CONNECTION', '192.168.227.144 60546 192.168.227.200 22'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('XDG_SESSION_CLASS', 'user'), ('PYTHONPATH', '/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('TERM', 'xterm-256color'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/0/vscode-git-828f52f582.sock'), ('SHLVL', '3'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('XDG_SESSION_ID', 'c2'), ('LD_LIBRARY_PATH', '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('XDG_RUNTIME_DIR', '/run/user/0'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('ROS_LOCALHOST_ONLY', '0'), ('SSH_CLIENT', '192.168.227.144 60546 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('LC_ALL', 'en_US.UTF-8'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/extensions/git/dist/askpass-main.js'), ('BROWSER', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/helpers/browser.sh'), ('PATH', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/remote-cli:/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('ROS_DISTRO', 'foxy'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('OLDPWD', '/root'), ('TERM_PROGRAM', 'vscode'), ('VSCODE_IPC_HOOK_CLI', '/run/user/0/vscode-ipc-8ba424aa-3307-4792-9e0a-5e1cd9d276a7.sock'), ('_', '/usr/bin/env')]), 'shell': False}
+[2.844087] (-) TimerEvent: {}
+[2.949028] (-) TimerEvent: {}
+[3.050963] (-) TimerEvent: {}
+[3.152509] (-) TimerEvent: {}
+[3.254239] (-) TimerEvent: {}
+[3.345512] (servo_response) StdoutLine: {'line': b'[100%] Built target servo_node\n'}
+[3.354713] (-) TimerEvent: {}
+[3.436867] (servo_response) CommandEnded: {'returncode': 0}
+[3.459278] (servo_response) JobProgress: {'identifier': 'servo_response', 'progress': 'install'}
+[3.459831] (-) TimerEvent: {}
+[3.572807] (servo_response) Command: {'cmd': ['/usr/bin/cmake', '--install', '/root/EulerCar_v_4/build/servo_response'], 'cwd': '/root/EulerCar_v_4/build/servo_response', 'env': OrderedDict([('SHELL', '/bin/bash'), ('ROS_VERSION', '2'), ('COLORTERM', 'truecolor'), ('TERM_PROGRAM_VERSION', '1.90.0'), ('ROS_PYTHON_VERSION', '3'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('LC_NAME', 'zh_CN.UTF-8'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('PWD', '/root/EulerCar_v_4/build/servo_response'), ('LOGNAME', 'root'), ('XDG_SESSION_TYPE', 'tty'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/node'), ('MOTD_SHOWN', 'pam'), ('HOME', '/root'), ('LC_PAPER', 'zh_CN.UTF-8'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('AMENT_PREFIX_PATH', '/root/EulerCar_v_4/install/servo_response:/root/EulerCar_v_4/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('GIT_ASKPASS', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/extensions/git/dist/askpass.sh'), ('CMAKE_PREFIX_PATH', '/root/EulerCar_v_4/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/EulerCar_v_4/install/autonomous_explorer:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy'), ('COLCON_PREFIX_PATH', '/root/EulerCar_v_4/install:/root/wheeltec_joy/install:/root/eulercar/install'), ('SSH_CONNECTION', '192.168.227.144 60546 192.168.227.200 22'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('XDG_SESSION_CLASS', 'user'), ('PYTHONPATH', '/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('TERM', 'xterm-256color'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/0/vscode-git-828f52f582.sock'), ('SHLVL', '3'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('XDG_SESSION_ID', 'c2'), ('LD_LIBRARY_PATH', '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('XDG_RUNTIME_DIR', '/run/user/0'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('ROS_LOCALHOST_ONLY', '0'), ('SSH_CLIENT', '192.168.227.144 60546 22'), ('LC_TIME', 'zh_CN.UTF-8'), ('LC_ALL', 'en_US.UTF-8'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/extensions/git/dist/askpass-main.js'), ('BROWSER', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/helpers/browser.sh'), ('PATH', '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/remote-cli:/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('ROS_DISTRO', 'foxy'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('OLDPWD', '/root'), ('TERM_PROGRAM', 'vscode'), ('VSCODE_IPC_HOOK_CLI', '/run/user/0/vscode-ipc-8ba424aa-3307-4792-9e0a-5e1cd9d276a7.sock'), ('_', '/usr/bin/env')]), 'shell': False}
+[3.577934] (-) TimerEvent: {}
+[3.658879] (servo_response) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.671842] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/lib/servo_response/servo_node\n'}
+[3.680676] (-) TimerEvent: {}
+[3.685915] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/include\n'}
+[3.700331] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/include/servo_response\n'}
+[3.705059] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/include/servo_response/servo_util.hpp\n'}
+[3.709376] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/include/servo_response/servo_node.hpp\n'}
+[3.711943] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/ament_index/resource_index/package_run_dependencies/servo_response\n'}
+[3.716744] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/ament_index/resource_index/parent_prefix_path/servo_response\n'}
+[3.721259] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/environment/ament_prefix_path.sh\n'}
+[3.725950] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/environment/ament_prefix_path.dsv\n'}
+[3.727708] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/environment/path.sh\n'}
+[3.729248] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/environment/path.dsv\n'}
+[3.730468] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/local_setup.bash\n'}
+[3.732082] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/local_setup.sh\n'}
+[3.734034] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/local_setup.zsh\n'}
+[3.736649] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/local_setup.dsv\n'}
+[3.739036] (servo_response) StdoutLine: {'line': b'-- Installing: /root/EulerCar_v_4/install/servo_response/share/servo_response/package.dsv\n'}
+[3.745748] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/ament_index/resource_index/packages/servo_response\n'}
+[3.751830] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/cmake/servo_responseConfig.cmake\n'}
+[3.764832] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/cmake/servo_responseConfig-version.cmake\n'}
+[3.769137] (servo_response) StdoutLine: {'line': b'-- Up-to-date: /root/EulerCar_v_4/install/servo_response/share/servo_response/package.xml\n'}
+[3.771435] (servo_response) CommandEnded: {'returncode': 0}
+[3.780878] (-) TimerEvent: {}
+[3.895318] (-) TimerEvent: {}
+[3.997400] (-) TimerEvent: {}
+[4.101589] (-) TimerEvent: {}
+[4.123301] (servo_response) JobEnded: {'identifier': 'servo_response', 'rc': 0}
+[4.201888] (-) TimerEvent: {}
+[4.303531] (-) TimerEvent: {}
+[4.404973] (-) TimerEvent: {}
+[4.506383] (-) TimerEvent: {}
+[4.608021] (-) TimerEvent: {}
+[4.709527] (-) TimerEvent: {}
+[4.810936] (-) TimerEvent: {}
+[4.912513] (-) TimerEvent: {}
+[5.013918] (-) TimerEvent: {}
+[5.115217] (-) TimerEvent: {}
+[5.216589] (-) TimerEvent: {}
+[5.319135] (-) TimerEvent: {}
+[5.420516] (-) TimerEvent: {}
+[5.523273] (-) TimerEvent: {}
+[5.624712] (-) TimerEvent: {}
+[5.726330] (-) TimerEvent: {}
+[5.827669] (-) TimerEvent: {}
+[5.929036] (-) TimerEvent: {}
+[6.030361] (-) TimerEvent: {}
+[6.135614] (-) TimerEvent: {}
+[6.236940] (-) TimerEvent: {}
+[6.338455] (-) TimerEvent: {}
+[6.439855] (-) TimerEvent: {}
+[6.541174] (-) TimerEvent: {}
+[6.643012] (-) TimerEvent: {}
+[6.744731] (-) TimerEvent: {}
+[6.846130] (-) TimerEvent: {}
+[6.947774] (-) TimerEvent: {}
+[7.049232] (-) TimerEvent: {}
+[7.150707] (-) TimerEvent: {}
+[7.252239] (-) TimerEvent: {}
+[7.353814] (-) TimerEvent: {}
+[7.455302] (-) TimerEvent: {}
+[7.556934] (-) TimerEvent: {}
+[7.658842] (-) TimerEvent: {}
+[7.760432] (-) TimerEvent: {}
+[7.860404] (autonomous_explorer) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/autonomous_explorer', 'build', '--build-base', '/root/EulerCar_v_4/build/autonomous_explorer/build', 'install', '--record', '/root/EulerCar_v_4/build/autonomous_explorer/install.log', '--install-scripts', '$base/lib/autonomous_explorer', '--single-version-externally-managed', 'install_data'], 'cwd': '/root/EulerCar_v_4/src/autonomous_explorer', 'env': {'SHELL': '/bin/bash', 'ROS_VERSION': '2', 'COLORTERM': 'truecolor', 'TERM_PROGRAM_VERSION': '1.90.0', 'ROS_PYTHON_VERSION': '3', 'LC_ADDRESS': 'zh_CN.UTF-8', 'LC_NAME': 'zh_CN.UTF-8', 'LC_MONETARY': 'zh_CN.UTF-8', 'PWD': '/root/EulerCar_v_4/build/autonomous_explorer', 'LOGNAME': 'root', 'XDG_SESSION_TYPE': 'tty', 'VSCODE_GIT_ASKPASS_NODE': '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/node', 'MOTD_SHOWN': 'pam', 'HOME': '/root', 'LC_PAPER': 'zh_CN.UTF-8', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSL_CERT_DIR': '/usr/lib/ssl/certs', 'AMENT_PREFIX_PATH': '/root/EulerCar_v_4/install/servo_response:/root/EulerCar_v_4/install/autonomous_explorer:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial:/root/eulercar/install/hieuler_teleop:/opt/ros/foxy', 'GIT_ASKPASS': '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/extensions/git/dist/askpass.sh', 'CMAKE_PREFIX_PATH': '/root/EulerCar_v_4/install/servo_response:/root/wheeltec_joy/install/wheeltec_joy:/root/eulercar/install/robot_bringup:/root/eulercar/install/ros2_hieuler_robot:/root/eulercar/install/serial', 'COLCON_PREFIX_PATH': '/root/EulerCar_v_4/install:/root/wheeltec_joy/install:/root/eulercar/install', 'SSH_CONNECTION': '192.168.227.144 60546 192.168.227.200 22', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'XDG_SESSION_CLASS': 'user', 'PYTHONPATH': '/root/EulerCar_v_4/build/autonomous_explorer/prefix_override:/usr/local/lib/python3.8/dist-packages/colcon_core/task/python/colcon_distutils_commands:/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages:/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages:/root/eulercar/install/ros2_hieuler_robot/lib/python3.8/site-packages:/root/eulercar/install/hieuler_teleop/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'LC_IDENTIFICATION': 'zh_CN.UTF-8', 'TERM': 'xterm-256color', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'root', 'VSCODE_GIT_IPC_HANDLE': '/run/user/0/vscode-git-828f52f582.sock', 'SHLVL': '3', 'LC_TELEPHONE': 'zh_CN.UTF-8', 'LC_MEASUREMENT': 'zh_CN.UTF-8', 'XDG_SESSION_ID': 'c2', 'LD_LIBRARY_PATH': '/root/eulercar/install/ros2_hieuler_robot/lib:/root/eulercar/install/serial/lib:/usr/lib/aarch64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib', 'XDG_RUNTIME_DIR': '/run/user/0', 'SSL_CERT_FILE': '/usr/lib/ssl/certs/ca-certificates.crt', 'ROS_LOCALHOST_ONLY': '0', 'SSH_CLIENT': '192.168.227.144 60546 22', 'LC_TIME': 'zh_CN.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'VSCODE_GIT_ASKPASS_MAIN': '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/extensions/git/dist/askpass-main.js', 'BROWSER': '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/helpers/browser.sh', 'PATH': '/root/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/remote-cli:/usr/local/bin:/usr/local/sbin:/opt/ros/foxy/bin:/usr/local/bin:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/0/bus', 'ROS_DISTRO': 'foxy', 'LC_NUMERIC': 'zh_CN.UTF-8', 'OLDPWD': '/root', 'TERM_PROGRAM': 'vscode', 'VSCODE_IPC_HOOK_CLI': '/run/user/0/vscode-ipc-8ba424aa-3307-4792-9e0a-5e1cd9d276a7.sock', '_': '/usr/bin/env'}, 'shell': False}
+[7.873056] (-) TimerEvent: {}
+[7.980804] (-) TimerEvent: {}
+[8.082293] (-) TimerEvent: {}
+[8.183699] (-) TimerEvent: {}
+[8.285152] (-) TimerEvent: {}
+[8.386477] (-) TimerEvent: {}
+[8.488053] (-) TimerEvent: {}
+[8.589421] (-) TimerEvent: {}
+[8.690762] (-) TimerEvent: {}
+[8.792710] (-) TimerEvent: {}
+[8.894414] (-) TimerEvent: {}
+[8.995808] (-) TimerEvent: {}
+[9.097308] (-) TimerEvent: {}
+[9.198725] (-) TimerEvent: {}
+[9.300087] (-) TimerEvent: {}
+[9.401510] (-) TimerEvent: {}
+[9.503057] (-) TimerEvent: {}
+[9.604723] (-) TimerEvent: {}
+[9.706151] (-) TimerEvent: {}
+[9.807580] (-) TimerEvent: {}
+[9.908964] (-) TimerEvent: {}
+[10.010708] (-) TimerEvent: {}
+[10.112110] (-) TimerEvent: {}
+[10.213500] (-) TimerEvent: {}
+[10.314969] (-) TimerEvent: {}
+[10.419080] (-) TimerEvent: {}
+[10.532286] (-) TimerEvent: {}
+[10.633891] (-) TimerEvent: {}
+[10.735375] (-) TimerEvent: {}
+[10.749841] (autonomous_explorer) StdoutLine: {'line': b'running egg_info\n'}
+[10.758399] (autonomous_explorer) StdoutLine: {'line': b'writing ../../build/autonomous_explorer/autonomous_explorer.egg-info/PKG-INFO\n'}
+[10.761030] (autonomous_explorer) StdoutLine: {'line': b'writing dependency_links to ../../build/autonomous_explorer/autonomous_explorer.egg-info/dependency_links.txt\n'}
+[10.763276] (autonomous_explorer) StdoutLine: {'line': b'writing entry points to ../../build/autonomous_explorer/autonomous_explorer.egg-info/entry_points.txt\n'}
+[10.765845] (autonomous_explorer) StdoutLine: {'line': b'writing requirements to ../../build/autonomous_explorer/autonomous_explorer.egg-info/requires.txt\n'}
+[10.771482] (autonomous_explorer) StdoutLine: {'line': b'writing top-level names to ../../build/autonomous_explorer/autonomous_explorer.egg-info/top_level.txt\n'}
+[10.835750] (-) TimerEvent: {}
+[10.937222] (-) TimerEvent: {}
+[11.038678] (-) TimerEvent: {}
+[11.140042] (-) TimerEvent: {}
+[11.164451] (autonomous_explorer) StdoutLine: {'line': b"reading manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'\n"}
+[11.174885] (autonomous_explorer) StdoutLine: {'line': b"writing manifest file '../../build/autonomous_explorer/autonomous_explorer.egg-info/SOURCES.txt'\n"}
+[11.177900] (autonomous_explorer) StdoutLine: {'line': b'running build\n'}
+[11.179369] (autonomous_explorer) StdoutLine: {'line': b'running build_py\n'}
+[11.181143] (autonomous_explorer) StdoutLine: {'line': b'copying autonomous_explorer/detect_and_grabV1.py -> /root/EulerCar_v_4/build/autonomous_explorer/build/lib/autonomous_explorer\n'}
+[11.184832] (autonomous_explorer) StdoutLine: {'line': b'running install\n'}
+[11.196329] (autonomous_explorer) StdoutLine: {'line': b'running install_lib\n'}
+[11.210169] (autonomous_explorer) StdoutLine: {'line': b'copying /root/EulerCar_v_4/build/autonomous_explorer/build/lib/autonomous_explorer/detect_and_grabV1.py -> /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer\n'}
+[11.215096] (autonomous_explorer) StdoutLine: {'line': b'byte-compiling /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer/detect_and_grabV1.py to detect_and_grabV1.cpython-38.pyc\n'}
+[11.234274] (autonomous_explorer) StdoutLine: {'line': b'running install_data\n'}
+[11.236065] (autonomous_explorer) StdoutLine: {'line': b'running install_egg_info\n'}
+[11.240266] (-) TimerEvent: {}
+[11.253459] (autonomous_explorer) StdoutLine: {'line': b"removing '/root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer-1.0.0-py3.8.egg-info' (and everything under it)\n"}
+[11.256318] (autonomous_explorer) StdoutLine: {'line': b'Copying ../../build/autonomous_explorer/autonomous_explorer.egg-info to /root/EulerCar_v_4/install/autonomous_explorer/lib/python3.8/site-packages/autonomous_explorer-1.0.0-py3.8.egg-info\n'}
+[11.268965] (autonomous_explorer) StdoutLine: {'line': b'running install_scripts\n'}
+[11.340576] (-) TimerEvent: {}
+[11.445287] (-) TimerEvent: {}
+[11.453336] (autonomous_explorer) StdoutLine: {'line': b'Installing detect_node script to /root/EulerCar_v_4/install/autonomous_explorer/lib/autonomous_explorer\n'}
+[11.455776] (autonomous_explorer) StdoutLine: {'line': b'Installing explorer_node script to /root/EulerCar_v_4/install/autonomous_explorer/lib/autonomous_explorer\n'}
+[11.460192] (autonomous_explorer) StdoutLine: {'line': b"writing list of installed files to '/root/EulerCar_v_4/build/autonomous_explorer/install.log'\n"}
+[11.545651] (-) TimerEvent: {}
+[11.648128] (-) TimerEvent: {}
+[11.749584] (-) TimerEvent: {}
+[11.761919] (autonomous_explorer) CommandEnded: {'returncode': 0}
+[11.848290] (autonomous_explorer) JobEnded: {'identifier': 'autonomous_explorer', 'rc': 0}
+[11.855103] (-) TimerEvent: {}
+[11.861108] (-) EventReactorShutdown: {}
