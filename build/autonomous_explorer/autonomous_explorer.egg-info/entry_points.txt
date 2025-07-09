@@ -1,4 +1,0 @@
-[console_scripts]
-detect_node = autonomous_explorer.detect_and_grabV1:main
-explorer_node = autonomous_explorer.myexplorer:main
-
