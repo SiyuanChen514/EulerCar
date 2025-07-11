@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MSS>
+    <SUBSYSTEM NAME="main_core" DATA_STRUCT_FILE="..\diag\main_core_hso_msg_struct_def.txt" DESCRIPTION="" MULTIMODE="main_core">
+        <MSG_LOG>
+            <MSG DESCRIPTION="" ID="0x280a" NAME="HI_DMID_BUFF_DISP_INFO" STRUCTURE="hi_dmid_buff_disp_info" />
+        </MSG_LOG>
+        <LAYER_LOG>
+        </LAYER_LOG>
+        <USERPLANE_LOG>
+        </USERPLANE_LOG>
+    </SUBSYSTEM>
+</MSS>

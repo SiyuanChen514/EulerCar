@@ -1,0 +1,19 @@
+ninja_required_version = 1.7.2
+
+rule gn
+  command = f:/HiSpark-Studio/tools/Windows/gn-win/gn.exe --root=./.. -q --dotfile=../build/.gn gen .
+  description = Regenerating ninja files
+
+build build.ninja: gn
+  generator = 1
+  depfile = build.ninja.d
+
+subninja toolchain.ninja
+
+build target.elf: phony ./bin/target.elf
+build build$:target.elf: phony ./bin/target.elf
+
+build all: phony $
+    ./bin/target.elf
+
+default all

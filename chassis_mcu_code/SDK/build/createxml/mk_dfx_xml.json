@@ -1,0 +1,10 @@
+{
+    "HDB_XML_TEMP_ROOT_DIR":"build/createxml/build_tmp/modules/",
+    "HDB_XML_FILE_ID":"drivers/log/inc/file_id_defs.h",
+ 
+    "HDB_PRIM_XML_SRC_FILE" : "build/createxml/mss_prim_db.xml",
+ 
+    "HDB_PRIM_XML_FILE_ID_BIT"  : "14",
+    "HDB_PRIM_XML_LINE_ID_BIT"  : "14",
+    "HDB_PRIM_XML_PRINT_LEVEL_BIT"  : "4"
+}
