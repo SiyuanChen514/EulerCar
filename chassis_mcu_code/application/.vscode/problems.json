@@ -1,0 +1,1 @@
+[{"key": 0, "message": "warning: unused parameter 'volt' [-Wunused-parameter]", "file": "D:\\car\\EulerCar\\chassis_mcu_code\\application\\user\\display.c", "line": "8", "column": "28", "displayLine": "8", "type": "warning"}]

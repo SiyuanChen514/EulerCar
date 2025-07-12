@@ -40,6 +40,7 @@
 #include "debug.h"
 #include "pid.h"
 #include "can_interfaces.h"
+#include "gpio_ip.h"
 /* 建议用户放置头文件 */
 #include "grab.h"
 #include "debug_uart.h"
@@ -69,6 +70,7 @@ GPIO_Handle g_gpio5;
 bool isRecv = false;
 bool isWrite = false;
 unsigned char ServoMsg;
+unsigned char BackMsg;
 
 char g_motorTypeStr[4][20] = {
      "1:45 HALL",
@@ -114,7 +116,7 @@ int main(void)
     SystemInit();
     InitGearMotor();
     Pid_Init();
-    ssd1306_Init();
+    // ssd1306_Init();
     // HAL_GPT_Start(&g_gpt0);
     // HAL_GPT_Start(&g_gpt1);
     

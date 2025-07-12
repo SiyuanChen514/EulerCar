@@ -11,6 +11,8 @@
 #include "pid.h"
 #include "button.h"
 #include "encoder.h"
+#include "grab.h"
+#include "can_interfaces.h"
 
 unsigned char g_MotorState;                              //电机状态
 
@@ -44,6 +46,7 @@ extern float g_KD_Step;
 extern bool isRecv;
 extern bool isWrite;
 extern unsigned char ServoMsg;
+extern unsigned char BackMsg;
 extern bool is_servo_done;
 extern bool Action;
 /* 接收完成标志 */
@@ -443,23 +446,37 @@ void UART3_INTRxSimultaneously(void)
             }
         }
 
-        ReceiveMsg(&ServoMsg, RxID);
+        ServoMsg = ReceiveMsg(RxID);
         if(isRecv){
             DBG_PRINTF("Receieved!\r\n");
             isRecv = false;
+            DBG_PRINTF("Receive message: %x \r\n", ServoMsg);
             HAL_GPIO_SetValue(&g_gpio2, GPIO_PIN_5, GPIO_LOW_LEVEL);
-            if((ServoMsg & 1) == 0){
-                ServoMsg = 0x00;
-                lift(); 
-                DBG_PRINTF("Lifting Blocks!\r\n");
+            if(is_servo_done){
+                is_servo_done = false;
+                if(ServoMsg & CLOSE){
+                    _close(200, 700);
+                    DBG_PRINTF("CLOSE!\r\n");
+                }
+                else{
+                    open(100, 300);
+                    DBG_PRINTF("OPEN!\r\n");
+                }
+                if(ServoMsg & UP){
+                    up(50, 650);
+                    DBG_PRINTF("UP!\r\n");
+                }
+                else{
+                    down(50, 400);
+                    DBG_PRINTF("DOWN!\r\n");
+                }
+                is_servo_done = true;
             }
-            else if((ServoMsg & 1) == 1){
-                ServoMsg = 1 << 1;
-                lay();
-                DBG_PRINTF("Laying blocks\r\n");
+            else{
+                BackMsg = (BackMsg << 1) & 0;    // 第7位表示动作类型: 0表示举起 1表示放下. 第八位表示动作是否完成: 1表示完成 0表示失败
             }
-            ServoMsg = (ServoMsg << 1) | 1;    // 第7位表示动作类型: 0表示举起 1表示放下. 第八位表示动作是否完成: 1表示完成 0表示失败
-            TransmitMsg(&ServoMsg, TxID);
+            
+            TransmitMsg(&BackMsg, TxID);
             
             HAL_GPIO_SetValue(&g_gpio2, GPIO_PIN_5, GPIO_HIGH_LEVEL);
         }

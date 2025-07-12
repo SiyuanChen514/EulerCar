@@ -1,7 +1,7 @@
 [information]
 series_name=3061m
 board=ZDU3061MNPICA
-sdk_path=d:\car\custom_controller\eulercar_controller\SDK
+sdk_path=d:\car\EulerCar\chassis_mcu_code\SDK
 flash=131072
 board_build.mcu=ZDU3061MNPICA
 platform=vendorhm
@@ -65,10 +65,10 @@ address=0x3000000
 stop_bit=0
 parity=N
 baud=115200
-port=COM4
+port=COM3
 
 [console]
-port=COM4
+port=COM3
 baud=115200
 stop_bit=0
 parity=N

@@ -2,6 +2,7 @@
 #include "can.h"
 #include "debug.h"
 #include "main.h"
+#include "grab.h"
 
 extern CANFrame g_sendFrame;
 extern CANFrame g_receiveFrame;
@@ -22,14 +23,17 @@ void CANReadCallbackFunc(void* handle){
 }
 
 
-void ReceiveMsg(unsigned char* msg, unsigned int CANRxID){
+unsigned char ReceiveMsg(unsigned int CANRxID){
+    unsigned char msg;
     CAN_FilterConfigure rxFilter;
     g_can.rxFrame = &g_receiveFrame;
     rxFilter.receiveType = CAN_FILTERFRAME_STD_DATA;
     rxFilter.filterID = CANRxID;        /* 0x1014 and 0xFFFFF0FF constitute filtering rules */
     rxFilter.filterMask = 0x7FF;  /* 0xFFFFF0FF is filter ID mask */
     HAL_CAN_ReadIT(&g_can, &g_receiveFrame, &rxFilter);
-    msg = g_receiveFrame.frame;
+    msg = g_receiveFrame.frame[0];
+    
+    return msg;
 }
 
 void TransmitMsg(unsigned char* msg, unsigned int CANTxID){   /* Address for storing received frame data */
@@ -46,13 +50,17 @@ void test_can(void){
     DBG_PRINTF("TEST CAN");
     message = 0x00;
     while(1){
-        ReceiveMsg(&message, 0x187);
+        message = ReceiveMsg(0x287);
         //DBG_PRINTF("TEST CAN");
         if(isRecv){
-            DBG_PRINTF("TEST CAN");
-        //     isRecv = false;
-        //     DBG_PRINTF("Message Received: %c\r\n", message);
-        //     TransmitMsg(&message);
+            if(message & 1){
+                lift();
+                DBG_PRINTF("Lift\r\n");
+            }
+            else{
+                DBG_PRINTF("Lay\r\n");
+                lay();
+            }
         }
         // TransmitMsg(&message);
         // DBG_PRINTF("%d\r\n", i++);

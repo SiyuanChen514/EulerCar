@@ -34,6 +34,7 @@
 #include "can.h"
 #include "qdm.h"
 #include "gpio.h"
+#include "gpio_ip.h"
 #include "gpt.h"
 #include "gpt_ex.h"
 #include "timer.h"

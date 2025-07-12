@@ -24,7 +24,7 @@ void set_duty(GPT_Handle* gpt_handle, int duty){
 
 
 void Rotate(GPT_Handle* gpt_handle, unsigned short time,  unsigned short duty){
-    DBG_PRINTF("CLOCKWISE\r\n");
+    // DBG_PRINTF("CLOCKWISE\r\n");
     set_duty(gpt_handle, duty); //350
     HAL_GPT_Start(gpt_handle);
     BASE_FUNC_DELAY_MS(time);

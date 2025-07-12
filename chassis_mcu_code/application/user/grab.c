@@ -8,6 +8,6 @@ void lift(void){
 
 
 void lay(void){
-    down(50, 350);
     open(30, 500);
+    down(50, 400);
 }
