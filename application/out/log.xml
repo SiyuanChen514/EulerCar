@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Log>
+    <Module name="12">
+        <File id="2001">
+            <Msg id="131137802" loglevel="ERROR" description="version info is : %x\n"/>
+        </File>
+    </Module>
+</Log>

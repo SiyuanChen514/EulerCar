@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "c/cpp plugin configurations",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "FLOAT_SUPPORT"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "c:\\Program Files\\HiSpark-Studio\\tools\\Windows\\cc_riscv32_musl_fp_win\\bin\\riscv32-linux-musl-gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,9 @@
+{
+    "name": "mybundle",
+    "version": "1.0.0",
+    "publishAs": "distribution",
+    "scripts": {
+        "dist": "python build/build.py build -b release",
+        "clean": "python build/build.py clean"
+    }
+}

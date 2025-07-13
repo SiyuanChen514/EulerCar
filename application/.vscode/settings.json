@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "gpio.h": "c",
+        "gpio_ip.h": "c",
+        "beep.h": "c",
+        "encoder.h": "c",
+        "can_interfaces.h": "c",
+        "grab.h": "c"
+    }
+}

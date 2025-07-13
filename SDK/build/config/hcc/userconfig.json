@@ -1,0 +1,129 @@
+{
+    "system": [
+        {
+            "name": "compile",
+            "subsystem": [
+                {
+                    "name": "static_lib",
+                    "component": [
+                        {
+                            "name": "",
+                            "target_type": "static",
+                            "sources": [
+                            ],
+                            "includes": [
+                            ],
+                            "define": [
+                            ],
+                            "libs": [
+                            ],
+                            "lds_scripts": [
+                            ],
+                            "cflags": [
+                            ],
+                            "asmflags": [
+                            ],
+                            "ldflags": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "compile_frame",
+                    "cflags": [
+                        "-Os",
+                        "-pipe",
+                        "-Wall",
+                        "-Werror",
+                        "-Wextra",
+                        "-Winit-self",
+                        "-Wmissing-include-dirs",
+                        "-Wtrampolines",
+                        "-Wundef",
+                        "-Wpointer-arith",
+                        "-Wlogical-op",
+                        "-Wstrict-prototypes",
+                        "-Wmissing-prototypes",
+                        "-Wjump-misses-init",
+                        "-Wformat=2",
+                        "-Wfloat-equal",
+                        "-Wdate-time",
+                        "-Wswitch-default",
+                        "-Wimplicit-fallthrough=2",
+                        "-Wno-missing-declarations",
+                        "-std=gnu99",
+                        "-fsigned-char",
+                        "-fno-builtin",
+                        "-ffreestanding",
+                        "-nostdlib",
+                        "-fno-exceptions",
+                        "-fno-unwind-tables",
+                        "-fno-short-enums",
+                        "-fno-common",
+                        "-freg-struct-return",
+                        "-mabi=ilp32",
+                        "-march=rv32imc",
+                        "-fno-strict-aliasing",
+                        "-fdata-sections",
+                        "-ffunction-sections",
+                        "-falign-functions=2",
+                        "-fno-schedule-insns",
+                        "-fno-optimize-strlen",
+                        "-fno-aggressive-loop-optimizations",
+                        "-Wa,-enable-c-lbu-sb",
+                        "-Wa,-enable-c-lhu-sh",
+                        "-msmall-data-limit=0",
+                        "-fimm-compare",
+                        "-femit-muliadd",
+                        "-fmerge-immshf",
+                        "-femit-uxtb-uxth",
+                        "-femit-lli",
+                        "-fldm-stm-optimize",
+                        "-fno-inline-small-functions",
+                        "-mtune=size",
+                        "-mpush-pop",
+                        "-femit-clz",
+                        "-madjust-regorder",
+                        "-madjust-const-cost",
+                        "-freorder-commu-args",
+                        "-fimm-compare-expand",
+                        "-frmv-str-zero",
+                        "-mfp-const-opt",
+                        "-mswitch-jump-table",
+                        "-frtl-sequence-abstract",
+                        "-frtl-hoist-sink",
+                        "-fsafe-alias-multipointer",
+                        "-finline-optimize-size",
+                        "-fmuliadd-expand",
+                        "-mlli-expand",
+                        "-Wa,-mcjal-expand",
+                        "-foptimize-reg-alloc",
+                        "-fsplit-multi-zero-assignments",
+                        "-floop-optimize-size",
+                        "-mpattern-abstract",
+                        "-foptimize-pro-and-epilogue",
+                        "-fstrict-volatile-bitfields"
+                    ],
+                    "asmflags": [
+                    ],
+                    "ldflags": [
+                        "-Wl,-Map,bin/target.map",
+                        "-Wl,--enjal16",
+                        "-Wl,--gc-section",
+                        "-Wl,--cjal-relax",
+                        "-Wl,--dslf",
+                        "-Wl,--jal-transfer",
+                        "-nostdlib",
+                        "-static",
+                        "-lgcc-nano",
+                        "-lc"
+                    ],
+                    "define": [
+                    ],
+                    "nocheck": [
+                    ]
+                }
+            ]
+        }
+    ]
+}

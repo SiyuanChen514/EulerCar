@@ -1,0 +1,3 @@
+ninja: Entering directory `out'
+[1/2] cross compiler obj/user/eulercar_control.o
+[2/2] LINK ./bin/target.elf
