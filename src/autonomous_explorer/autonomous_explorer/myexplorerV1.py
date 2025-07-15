@@ -16,8 +16,8 @@ from bresenham import bresenham
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from rclpy.action.client import ClientGoalHandle # 导入 ClientGoalHandle
 from actionlib_msgs.msg import GoalStatus
-import cv2
-from sensor_msgs.msg import Image
+from transformations import euler_from_quaternion
+from transformations import quaternion_from_euler
 import tf2_ros
 
 from grab_box import *
@@ -108,8 +108,16 @@ class ExplorerNode(Node):
         # 地图数据
         self.map_data = None
         self.processed_map_array = None
+
+        # 机器人位置与姿态（世界坐标）
+        self.world_x = None
+        self.world_y = None
+        self.robot_quaternion = None
+        self.world_yaw = None
+
         # 机器人位置（网格坐标）
         self.robot_position = None
+
 
         # 前沿点发布器
         self.frontier_pub = self.create_publisher(MarkerArray, '/frontier_markers', 10)
@@ -128,6 +136,11 @@ class ExplorerNode(Node):
         self.print_state_count = 0
         # 添加标志位防止重复探索
         self.is_exploring = False
+
+        self.green_ok = False
+        self.red_ok = False
+        self.blue_ok = False
+
         # 添加标志位，指示是否正在返回原点
         self.returning_to_origin = False
         # 添加一个变量来存储当前活跃的导航目标句柄
@@ -137,17 +150,21 @@ class ExplorerNode(Node):
         self.stop_threshold = 0.5
         
         # 存放当前导航目标
-        self.explore_goal = []
+        self.nav_goal = []
+
+        self.green_loc = []
+        self.red_loc = []
+        self.blue_loc = []
 
         # 是否检测到物块开始抓取
-        self.beginGrab = False
+        self.beginGrab = "no"
 
-        # 列表存放当前检测到的物块的位置
-        self.box_list = []
+        self.ready_to_put = False
+        self.put_ok = False
 
         self.grabbed = False
         # 状态机定时器
-        self.check_StateMachine_timer = self.create_timer(1.0, self.check_state_machine, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
+        self.check_StateMachine_timer = self.create_timer(0.01, self.check_state_machine, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
         self.car_state = "init"
         
         # 周期性识别物块
@@ -202,7 +219,7 @@ class ExplorerNode(Node):
                 return
         if self.car_state == "explore":
             # 如果存在探索点则进行导航
-            if self.explore_goal:
+            if self.nav_goal:
                 self.change_state("moving")
                 return
             else:
@@ -217,25 +234,59 @@ class ExplorerNode(Node):
             # 检测是否到达目标点
             # 鲁棒性
             try:
-                if (self.robot_position[0] - self.explore_goal[0])**2 + (self.robot_position[1] - self.explore_goal[1])**2 < 0.005:
-                    self.explore_goal = []
+                if (self.robot_position[0] - self.nav_goal[0])**2 + (self.robot_position[1] - self.nav_goal[1])**2 < 0.005:
                     self.change_state("explore")
                     return
                 else:
-                    self.navigate_to(self.explore_goal)
+                    self.navigate_to(self.nav_goal,self.robot_quaternion)
                     return
             except Exception as e:
                 self.get_logger().info("Error in moving to the goal:" + str(e))
-        if self.car_state == "grab":
+        
+        if self.car_state == "put_down":
+            if self.put_ok:
+                self.ready_to_put = False
+                self.put_ok = False
+                if self.red_loc != []:
+                    self.nav_goal = self.red_loc
+                    self.nav_attutide = self.red_attitude
+                    self.change_state("moving")
+                
+
+    
+        if self.car_state == "grab_green":
             if self.grabbed:
+                self.green_ok = True
+                self._return =  "green" 
                 self.change_state("return")
             else:
-                if grab_lift_box(self,self.world_box_loc) is not None:
-                    self.grabbed = True
-                    return
+                return
+        if self.car_state == "grab_red":
+            if self.grabbed:
+                self.red_ok = True
+                self._return =  "red" 
+                self.change_state("return")
+            else:
+                return
+        if self.car_state == "grab_blue":
+            if self.grabbed:
+                self.blue_ok = True
+                self._return =  "blue" 
+                self.change_state("return")
+            else:
+                return         
         if self.car_state == "return":
-            self.explore_goal = (0,0)
-            self.change_state("moving")
+            self.grabbed = False
+            self.beginGrab = False
+            # self.change_state("moving")
+            # home_p = [0,0,0]
+            # home_q = [1,0,0,0]
+            if self.ready_to_put:
+                self.change_state("put_down")
+            self.nav_goal = [0,0,0]
+            self.navigate_to(self.nav_goal,self.robot_quaternion)
+
+        
 
 
     # 状态机切换
@@ -249,7 +300,10 @@ class ExplorerNode(Node):
 
         self.world_x = msg.pose.pose.position.x
         self.world_y = msg.pose.pose.position.y
-        self.world_yaw = msg.pose.pose.orientation.z
+
+        self.robot_quaternion = [msg.pose.pose.orientation.w, msg.pose.pose.orientation.x, 
+             msg.pose.pose.orientation.y, msg.pose.pose.orientation.z]
+        self.world_yaw = euler_from_quaternion(self.robot_quaternion)[2]
 
         resolution = self.map_data.info.resolution
         origin_x = self.map_data.info.origin.position.x
@@ -335,54 +389,56 @@ class ExplorerNode(Node):
         self.frontier_pub.publish(marker_array)
         self.get_logger().info(f"Published {len(frontiers)} frontier markers.")
 
-    def navigate_to(self,goal):
+    def navigate_to(self,p,q):
+        """
+        p为位置,q为四元数,发布在世界坐标系下的机器人预期的位置和姿态,注意p和q是地图坐标系下的坐标
+
+        """
         # 验证输入参数
-        if not goal:
-            self.get_logger().error("Invalid navigation goal: x or y is empty or None")
-            self.is_exploring = False
+        if not p or not q:
+            self.get_logger().error("Invalid navigation goal: p or q is empty or None")
             return          
+        
+        # non_terminal_states = [
+        #     GoalStatus.PENDING,      # 0: 待处理
+        #     GoalStatus.ACTIVE,       # 1: 正在执行
+        #     GoalStatus.PREEMPTING,   # 6: 正在取消（执行后收到取消请求）
+        #     GoalStatus.RECALLING     # 7: 正在取消（执行前收到取消请求）
+        # ]
 
-        # if x and y:
-        #     self.get_logger().error("Invalid navigation goal: x or y is empty or None")
-        #     self.is_exploring = False
-        #     return
-        # 如果正在返回原点，并且已经有活跃的导航目标，则不发送新的探索目标
-        # 定义非终止状态（目标仍在处理中）
-        non_terminal_states = [
-            GoalStatus.PENDING,      # 0: 待处理
-            GoalStatus.ACTIVE,       # 1: 正在执行
-            GoalStatus.PREEMPTING,   # 6: 正在取消（执行后收到取消请求）
-            GoalStatus.RECALLING     # 7: 正在取消（执行前收到取消请求）
-        ]
-
-        # 检查是否正在返回原点且有活跃目标
-        if self.returning_to_origin and self.current_goal_handle is not None:
-            if self.current_goal_handle.status in non_terminal_states:
-                self.get_logger().info(f"Currently returning to origin with a non-terminal goal (status: {self.current_goal_handle.status}), skipping new navigation goal.")
-                return
-            # 如果目标已进入终止状态，重置 goal_handle
-            elif self.current_goal_handle.status in [
-                GoalStatus.SUCCEEDED,  # 3: 成功
-                GoalStatus.ABORTED,    # 4: 失败
-                GoalStatus.REJECTED,   # 5: 拒绝
-                GoalStatus.PREEMPTED,  # 2: 取消后完成
-                GoalStatus.RECALLED,   # 8: 执行前取消
-                GoalStatus.LOST        # 9: 丢失
-            ]:
-                self.get_logger().info(f"Previous goal reached terminal state (status: {self.current_goal_handle.status}), resetting goal handle.")
-                self.current_goal_handle = None
+        # # 检查是否正在返回原点且有活跃目标
+        # if self.returning_to_origin and self.current_goal_handle is not None:
+        #     if self.current_goal_handle.status in non_terminal_states:
+        #         self.get_logger().info(f"Currently returning to origin with a non-terminal goal (status: {self.current_goal_handle.status}), skipping new navigation goal.")
+        #         return
+        #     # 如果目标已进入终止状态，重置 goal_handle
+        #     elif self.current_goal_handle.status in [
+        #         GoalStatus.SUCCEEDED,  # 3: 成功
+        #         GoalStatus.ABORTED,    # 4: 失败
+        #         GoalStatus.REJECTED,   # 5: 拒绝
+        #         GoalStatus.PREEMPTED,  # 2: 取消后完成
+        #         GoalStatus.RECALLED,   # 8: 执行前取消
+        #         GoalStatus.LOST        # 9: 丢失
+        #     ]:
+        #         self.get_logger().info(f"Previous goal reached terminal state (status: {self.current_goal_handle.status}), resetting goal handle.")
+        #         self.current_goal_handle = None
 
         goal_msg = PoseStamped()
         goal_msg.header.frame_id = 'map'
         goal_msg.header.stamp = self.get_clock().now().to_msg()
-        goal_msg.pose.position.x = float(goal[0])
-        goal_msg.pose.position.y = float(goal[1])
-        goal_msg.pose.orientation.w = self.orientation_w # 机器人的面向方向可能要修改
+        goal_msg.pose.position.x = float(p[0])
+        goal_msg.pose.position.y = float(q[1])
+
+        goal_msg.pose.orientation.w = float(q[0])
+        goal_msg.pose.orientation.x = float(q[1])
+        goal_msg.pose.orientation.y = float(q[2])
+        goal_msg.pose.orientation.z = float(q[3])
+        
 
         explore_goal = NavigateToPose.Goal()
         explore_goal.pose = goal_msg
 
-        self.get_logger().info(f"Sending navigation goal: x={x:.2f}, y={y:.2f}")
+        self.get_logger().info(f"Sending navigation goal: x={p[0]:.2f}, y={p[1]:.2f}")
 
         if not self.nav_to_pose_client.wait_for_server(timeout_sec=5.0):
             self.get_logger().error("Nav2 action server not available, cannot send goal!")
@@ -689,14 +745,16 @@ class ExplorerNode(Node):
             self.create_timer(1.0, self.explore, callback_group=rclpy.callback_groups.ReentrantCallbackGroup())
             return
 
-        self.explore_goal[0] = chosen_frontier[1] * self.map_data.info.resolution + self.map_data.info.origin.position.x
-        self.explore_goal[1] = chosen_frontier[0] * self.map_data.info.resolution + self.map_data.info.origin.position.y
+        self.nav_goal[0] = chosen_frontier[1] * self.map_data.info.resolution + self.map_data.info.origin.position.x
+        self.nav_goal[1] = chosen_frontier[0] * self.map_data.info.resolution + self.map_data.info.origin.position.y
         # self.navigate_to(goal_x, goal_y)
 
     # --------------------------------物块识别----------------------------------
     
     # 主函数 
     def detect_box_callback(self):
+
+
         """
         定时器回调函数，用于检测物块并赋值位置
         赋值标志beginGrab
@@ -704,38 +762,121 @@ class ExplorerNode(Node):
         参数:
             None
         返回值:
-            成功为True，失败为None
+            无
         """
+
+        # 先进行检测查看是否检测到物体，并记录检测到物体的位置减少探索时间,如果已经记录物体位置或者搬运过这个物体就跳过。
+        if self.green_loc == [] and not self.green_ok:
+            _,_,green_detected_ = \
+            process_video("green",self.focal_length,self.baseline,self.img_width,self.img_height,0)
+            if green_detected_ == True:
+                self.BeginGrab = "green"
+
+        if self.red_loc ==[] and not self.red_ok:
+            _,_,red_detected_ = \
+            process_video("red",self.focal_length,self.baseline,self.img_width,self.img_height,0)
+            if red_detected_ == True:
+                self.red_loc = [self.world_x,self.world_y]
+                self.red_attitude = self.robot_quaternion
+
+            # 如果已经搬运完绿色物体并且检测到红色物体，则开始搬运红色物体
+            if self.green_ok and not self.red_ok:
+                self.BeginGrab = "red"
+        
+        if self.blue_loc == [] and not self.blue_ok:
+            _,_,blue_detected_ = \
+            process_video("blue",self.focal_length,self.baseline,self.img_width,self.img_height,0)
+            if blue_detected_ == True:            
+                self.blue_loc = [self.world_x,self.world_y]
+                self.blue_attitude = self.robot_quaternion
+
+            # 如果已经搬运完绿色和红色物体并且检测到蓝色物体，则开始搬运蓝色物体
+            if self.green_ok and self.red_ok and not self.blue_ok:
+                self.BeginGrab = "blue"
+
+        if self.car_state == "return":
+            return 
+        if self.car_state == "grab_green":
+            color = "green"
+        elif self.car_state == "grab_red":
+            color = "red"
+        elif self.car_state == "grab_blue":
+            color = "blue"
+
         # 1. 接收相机数据,识别物块并获取坐标(失败检测)
         self.get_logger().info("receiving camera data...")  
-        box_loc = process_video(self.focal_length,self.baseline,self.img_width,self.img_height,0)
-        if box_loc == None:
+        box_loc,grabbed_,_ = process_video(color,self.focal_length,self.baseline,self.img_width,self.img_height,0)
+        if grabbed_:
+            self.grabbed = True
+            """
+            这里加上抓取的代码，并且需要加上一定的延时函数保证抓取成功
+
+
+            """
+            return 
+        self.grab_adjust(box_loc)      
+        
+          
+    def grab_adjust(self,box_loc):
+
+        if box_loc == []:
             self.get_logger().info("Detect no box!")
             return
         else:
+            self.beginGrab = True
             self.get_logger().info("receiving the box corrdinates successfully!")
-            # 2. 变换到世界坐标
-            self.world_box_loc = transform2world(self,self.camera_frame,box_loc)
-            if self.world_box_loc is not None:
-                self.get_logger().info("transforming coordinates successfully!")
-                self.beginGrab = True
-                return True
-            else:
-                self.get_logger().info("Failed to transform coordinates!")
-                return
-            # 3. 抓取模块
-            # if grab_lift_box(self,world_box_loc) is not None:
-            #     # 失败是否要重新抓取
-            #     # 4. 若抓取成功，周期性检查抓取状态
+            # 检查是否进入抓取状态，避免和moving状态控制冲突
+            if self.car_state == 'grab':            
+            # 进行抓取操作
+                if abs(box_loc[0]) <= 0.02 and abs(box_loc) < 0.14:
+                    print("-----------------------Ready to Grab---------------------")
+                    # p为位置，q为姿态
+                    # robot_location的x轴代表box_location的y轴
+                    x_ = np.cos(self.world_yaw)* 0.15 + self.robot_position[0]
+                    y_ = np.sin(self.world_yaw)* 0.15 + self.robot_position[1]
+                    p = [x_,y_]
 
-            #     # 5. 放置模块
-            #     world_lay_corrds = [0,0]
-            #     grab_lay_box(self,world_lay_corrds)
-                
-            #     # 7. 继续探索
-            #     # 从/map，catografer获取地图信息
+                    q = self.robot_quaternion
+                    # self.box_location = [-1,-1,-1]
+                    # # self.beginGrab = False
+                    # # self.grabbing = Truep
+                    self.navigate_to(p,q)
+
+                elif abs(box_loc[0]) <= 0.02 and abs(box_loc[1]) >= 0.14:
+                    print("-----------------------Too Far---------------------")
+                    # p为位置，q为姿态
+                    x_ = np.cos(self.world_yaw)*(box_loc[1] - 0.12) + self.robot_position[0]
+                    y_ = np.sin(self.world_yaw)*(box_loc[1] - 0.12) + self.robot_position[1]
+                    p = [x_,y_]
+
+                    q = self.robot_quaternion
+                    # self.box_location = [-1,-1,-1]
+                    self.navigate_to(p,q)
             
-        
+                elif abs(box_loc[0]) > 0.02:
+                    print("-----------------------Adjust Attitude---------------------")
+                    # 计算物体相对于机器人的yaw
+                    if box_loc[1] == 0:
+                        if box_loc[0] > 0:
+                            yaw_delta = np.pi/2
+                        else:
+                            yaw_delta = -np.pi/2
+                    else:
+                        yaw_delta = np.arctan(box_loc[0]/box_loc[1])
+
+                    # yaw_robot = euler_from_quaternion(self.robot_attitude)[2]
+
+
+                    yaw_goal = self.world_yaw - yaw_delta
+
+                    print(self.yaw_robot)
+                    print(f"you should turn right {yaw_delta*180/np.pi} degree!!!!!!!!!!!!!!")
+                    # 转换为四元数
+                    p = [self.robot_position[1],self.robot_position[0],0]
+                    q = quaternion_from_euler(0,0,yaw_goal)
+                    # self.box_location = [-1,-1,-1]
+
+                    self.navigate_to(p,q)        
 def main(args=None):
         rclpy.init(args=args)
         explorer_node = ExplorerNode()
